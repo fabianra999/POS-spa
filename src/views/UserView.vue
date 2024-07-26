@@ -1,14 +1,16 @@
 <!-- filename: UserView.vue -->
 <template>
-    <div>
-        <h1>Billing</h1>
-    </div>
+  <div>
+    <h1>Billing</h1>
+  </div>
 </template>
 
 <script setup>
-
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+// $color: red;
+// h1 {
+//   color: $color;
+// }
 </style>
