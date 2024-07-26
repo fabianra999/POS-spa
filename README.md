@@ -1,5 +1,5 @@
 # POS - SPA
-## Vue 3 + Vite + Pinia + Vue-router
+## Vue 3 + Vite + Pinia + Vue-router + Axios
 ### Fabian Camilo Ramirez Alba
 
 
