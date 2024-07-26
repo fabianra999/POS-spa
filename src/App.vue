@@ -21,5 +21,4 @@ import HelloWorld from "./components/HelloWorld.vue";
 
 <style lang="scss">
 @import "./assets/styles/global.scss";
-
 </style>

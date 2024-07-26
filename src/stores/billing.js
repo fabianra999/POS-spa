@@ -1,11 +1,10 @@
 import { defineStore } from "pinia";
-import axiosInstance from "../axiosInstance";
-
+import axiosInstance from "../assets/utils/axiosInstance";
 
 export const useBillingStore = defineStore("billing", {
   // state
   state: () => ({
-    bills:[
+    bills: [
       {
         id: 1,
         date: "2021-01-01",
@@ -15,7 +14,7 @@ export const useBillingStore = defineStore("billing", {
         paid: false,
         cashier: "Cashier 1",
       },
-    ]
+    ],
   }),
   // getters
   getters: {},

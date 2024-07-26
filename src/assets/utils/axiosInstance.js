@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://api.example.com', // Reemplaza con tu URL base
-  timeout: 1000, // Tiempo de espera en milisegundos
+  baseURL: 'https://api.example.com', 
+  timeout: 1000, 
   headers: { 'Content-Type': 'application/json' },
 });
 

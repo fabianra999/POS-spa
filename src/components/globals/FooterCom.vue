@@ -1,7 +1,7 @@
-<!-- filename: InventaryView.vue -->
+<!-- filename: FooterCom.vue -->
 <template>
     <div>
-        <h1>Billing</h1>
+        <h1>FooterCom</h1>
     </div>
 </template>
 

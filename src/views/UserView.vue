@@ -9,8 +9,4 @@
 </script>
 
 <style lang="scss" scoped>
-// $color: red;
-// h1 {
-//   color: $color;
-// }
 </style>
