@@ -1,6 +1,6 @@
 # POS - SPA
-## Fabian Camilo Ramirez Alba
 ## Vue 3 + Vite + Pinia + Vue-router
+### Fabian Camilo Ramirez Alba
 
 
 
