@@ -1,5 +1,5 @@
 # POS - SPA
-## Vue 3 + Vite + Pinia + Vue-router + Axios
+## Vue 3 + Vite + Pinia + Vue-router + Axios + Eslint(airbnb)
 ### Fabian Camilo Ramirez Alba
 
 

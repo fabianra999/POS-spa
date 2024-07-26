@@ -22,11 +22,7 @@ export const useUserStore = defineStore("user", {
     ],
   }),
   // getters
-  getters: {
-    doubleCount: (state) => {
-      return state.count * 2;
-    },
-  },
+  getters: {},
   // actions
   actions: {
     async GET_USER(userId) {

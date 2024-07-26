@@ -1,6 +1,7 @@
+<!-- filename: CustomerView.vue -->
 <template>
     <div>
-        <h1>Billing</h1>
+        <h1>CustomerView</h1>
     </div>
 </template>
 

@@ -1,6 +1,7 @@
+<!-- filename: InventaryView.vue -->
 <template>
     <div>
-        <h1>Repo</h1>
+        <h1>Billing</h1>
     </div>
 </template>
 

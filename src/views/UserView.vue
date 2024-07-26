@@ -1,3 +1,4 @@
+<!-- filename: UserView.vue -->
 <template>
     <div>
         <h1>Billing</h1>
