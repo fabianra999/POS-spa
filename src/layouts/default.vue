@@ -1,9 +1,11 @@
 <template>
   <v-app>
-    <p>mmmmmm</p>
     <v-main>
+      <p>Hola</p>
       <router-view />
     </v-main>
+
+    <AppFooter />
   </v-app>
 </template>
 
