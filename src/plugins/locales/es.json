@@ -1,3 +1,18 @@
 {
-    "welcome": "Bienvenido"
+    "userTitle": "Administración de usuarios",
+    "userSubTitle": "En este módulo podrás administrar los usuarios de la herramienta",
+    "name": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo",
+    "documentId": "Documento ID",
+    "age": "Edad",
+    "dateBirth": "Fecha de nacimiento",
+    "role": "Rol",
+    "password": "Clave",
+    "country": "País",
+    "city": "Ciudad",
+    "state": "Estado",
+    "policies": "¿Estás de acuerdo?",
+    "btn-submit": "Enviar",
+    "btn-clear": "Limpiar"
 }

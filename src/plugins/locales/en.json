@@ -1,3 +1,18 @@
 {
-    "welcome": "Welcome"
+    "userTitle": "User Management",
+    "userSubTitle": "In this module you can manage the users of the tool",
+    "name": "Name",
+    "lastName": "Last Name",
+    "documentId": "Document Id",
+    "email": "E-mail",
+    "age": "Age",
+    "dateBirth": "Date birth",
+    "role": "Role",
+    "password": "Password",
+    "country": "Country",
+    "city": "City",
+    "state": "State",
+    "policies": "Do you agree?",
+    "btn-submit": "Submit",
+    "btn-clear": "Clear"
 }
