@@ -192,5 +192,30 @@
       "size": "bold",
       "style": "italic"
     }
+  },
+  "login": {
+    "title": "Iniciar Sesión",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "rememberMe": "Recuérdame",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "login": "Iniciar Sesión"
+  },
+  "permissions":{
+    "admin": {
+      "customers": true,
+      "users": true,
+      "inventory": true,
+      "services": true,
+      "billing": true,
+      "settings": true,
+      "logout": true
+    },
+    "user": {
+      "customers": true,
+      "inventory": true,
+      "services": true,
+      "logout": true
+    }
   }
 }
