@@ -1,0 +1,196 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Fabian",
+      "lastName": "Ramirez Alba",
+      "documentIdTYpe": 1,
+      "documentId": "1032425808",
+      "email": "fabinara@gmail.com",
+      "age": 33,
+      "dateBirth": "1989-06-06",
+      "role": 1,
+      "password": "123456",
+      "country": 1,
+      "city": 1,
+      "img": "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png",
+      "state": true
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "name": "Cliente 1",
+      "lastName": "Apellido 1",
+      "documentIdTYpe": 1,
+      "documentId": "1032425808",
+      "email": ""
+    }
+  ],
+  "country": [
+    {
+      "id": 1,
+      "name": "Colombia"
+    }
+  ],
+  "city": [
+    {
+      "id": 1,
+      "name": "Bogota",
+      "country": 1
+    }
+  ],
+  "state": [
+    {
+      "id": 1,
+      "name": "Activo"
+    },
+    {
+      "id": 2,
+      "name": "Inactivo"
+    }
+  ],
+  "documentIdTYpe": [
+    {
+      "id": 1,
+      "name": "Cedula de Identidad"
+    },
+    {
+      "id": 2,
+      "name": "Tarjeta de Identidad"
+    },
+    {
+      "id": 3,
+      "name": "Pasaporte"
+    }
+  ],
+  "role": [
+    {
+      "id": 1,
+      "name": "Administrador"
+    },
+    {
+      "id": 2,
+      "name": "Cliente"
+    },
+    {
+      "id": 3,
+      "name": "Gerente"
+    },
+    {
+      "id": 4,
+      "name": "Vendedor"
+    }
+  ],
+  "paymentMethods": [
+    {
+      "id": 1,
+      "name": "Efectivo"
+    },
+    {
+      "id": 2,
+      "name": "Tarjeta de Credito"
+    },
+    {
+      "id": 3,
+      "name": "Transferencia Bancaria"
+    }
+  ],
+  "inventaryType": [
+    {
+      "id": 1,
+      "name": "Producto"
+    },
+    {
+      "id": 2,
+      "name": "Servicio"
+    }
+  ],
+  "inventary": [
+    {
+      "id": 1,
+      "name": "Producto 1",
+      "price": 10,
+      "quantity": 10,
+      "inventaryType": 1,
+      "location": "A1"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Categoría 1"
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "name": "Servicio 1",
+      "price": 10,
+      "duration": 60,
+      "category": 1
+    }
+  ],
+  "billing": [
+    {
+      "id": 1,
+      "customer": 1,
+      "paymentMethod": 1,
+      "total": 10,
+      "date": "2022-10-10",
+      "state": 1
+    }
+  ],
+  "theme": {
+    "id": 1,
+    "name": "Tema 1",
+    "primary": "#1976D2",
+    "secondary": "#424242",
+    "accent": "#82B1FF",
+    "error": "#FF5252",
+    "info": "#2196F3",
+    "success": "#4CAF50",
+    "warning": "#FFC107",
+    "logo": "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png",
+    "st_p": {
+      "color": "black",
+      "size": "bold",
+      "style": "italic"
+    },
+    "st_h1": {
+      "color": "black",
+      "size": "bold",
+      "style": "italic"
+    },
+    "st_h2": {
+      "color": "black",
+      "size": "bold",
+      "style": "italic"
+    },
+    "st_input": {
+      "color": "black",
+      "size": "bold",
+      "style": "italic"
+    },
+    "st_button": {
+      "color": "black",
+      "size": "bold",
+      "style": "italic"
+    },
+    "st_header": {
+      "color": "black",
+      "size": "bold",
+      "style": "italic"
+    },
+    "st_footer": {
+      "color": "black",
+      "size": "bold",
+      "style": "italic"
+    },
+    "st_body": {
+      "color": "black",
+      "size": "bold",
+      "style": "italic"
+    }
+  }
+}

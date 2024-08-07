@@ -1,19 +1,12 @@
 <!-- filename: UserView.vue -->
 <template>
   <HeaderPagesCom :title="$t('userTitle')" :subTitle="$t('userSubTitle')" />
+
+  <TableUser />
   <form>
     <v-container>
       <v-row>
         <v-col cols="12" sm="6" md="4">
-          <v-text-field
-            v-model="state.name"
-            :counter="10"
-            :error-messages="v$.name.$errors.map((e) => e.$message)"
-            :label="$t('name')"
-            required
-            @blur="v$.name.$touch"
-            @input="v$.name.$touch"
-          ></v-text-field>
           <v-text-field
             v-model="state.name"
             :counter="10"
@@ -128,12 +121,17 @@ import { useVuelidate } from "@vuelidate/core";
 import { email, required } from "@vuelidate/validators";
 import { useI18n } from "vue-i18n";
 
+import { useUserStore } from '@/stores/user';
+
+const userStore = useUserStore();
+
+onMounted(() => {});
+
+// Form
 const { t } = useI18n({
   inheritLocale: true,
   useScope: "global",
 });
-
-onMounted(() => {});
 
 const initialState = {
   name: "",
@@ -176,6 +174,7 @@ function getErrorMessage(errors) {
 const errorMessage = computed(() => {
   return "";
 });
+// /Form
 </script>
 
 <style lang="scss" scoped>

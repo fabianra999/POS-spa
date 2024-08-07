@@ -1,10 +1,9 @@
 import { defineStore } from "pinia";
-import axiosInstance from "../assets/utils/axiosInstance";
+import axiosInstance from "../plugins/axiosInstance";
 
 export const useUserStore = defineStore("user", {
   // state
   state: () => ({
-    count: 0,
     user: [
       {
         id: null,
@@ -21,6 +20,7 @@ export const useUserStore = defineStore("user", {
         state: null,
       },
     ],
+    users: [],
   }),
   // getters
   getters: {},
