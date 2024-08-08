@@ -4,22 +4,8 @@ import axiosInstance from "../plugins/axiosInstance";
 export const useUserStore = defineStore("user", {
   // state
   state: () => ({
-    user: [
-      {
-        id: null,
-        name: "",
-        lastName: "",
-        documentId: "",
-        email: "",
-        age: null,
-        dateBirth: "",
-        role: null,
-        password: "",
-        country: null,
-        city: null,
-        state: null,
-      },
-    ],
+    user: {},
+
     users: [],
   }),
   // getters
@@ -29,17 +15,17 @@ export const useUserStore = defineStore("user", {
     async GET_USER(userId) {
       try {
         const response = await axiosInstance.get(
-          `https://api.example.com/users/${userId}`
+          `users/${userId}`
         );
         this.user = response.data;
       } catch (error) {
         console.error("Error fetching user:", error);
       }
     },
-    async GET_USERS() {
+    async GET_USERS(data) {
       try {
         const response = await axiosInstance.get(
-          `https://api.example.com/users`
+          `users?_page=${data.page}&_per_page=${data.perPage}`
         );
         this.users = response.data;
       } catch (error) {
@@ -49,7 +35,7 @@ export const useUserStore = defineStore("user", {
     async CREATE_USER(user) {
       try {
         const response = await axiosInstance.post(
-          `https://api.example.com/users`,
+          `users`,
           user
         );
         this.user = response.data;
@@ -60,13 +46,25 @@ export const useUserStore = defineStore("user", {
     async UPDATE_USER(user) {
       try {
         const response = await axiosInstance.put(
-          `https://api.example.com/users/${user.id}`,
-          user
+          `users/${user.id}`,
+          user.data
+        );
+        this.user = response.data;
+        return response.data;
+      } catch (error) {
+        console.error("Error updating user:", error);
+        return error;
+      }
+    },
+    async DELETE_USER(userId) {
+      try {
+        const response = await axiosInstance.delete(
+          `users/${userId}`
         );
         this.user = response.data;
       } catch (error) {
-        console.error("Error updating user:", error);
+        console.error("Error deleting user:", error);
       }
-    },
+    }
   },
 });

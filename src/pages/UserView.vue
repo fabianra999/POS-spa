@@ -8,6 +8,15 @@
       <v-row>
         <v-col cols="12" sm="6" md="4">
           <v-text-field
+            v-model="userStore.user.name"
+            :counter="10"
+            :error-messages="getErrorMessage(v$.name.$errors)"
+            :label="$t('name')"
+            required
+            @blur="v$.name.$touch"
+            @input="v$.name.$touch"
+          ></v-text-field>
+          <v-text-field
             v-model="state.name"
             :counter="10"
             :error-messages="getErrorMessage(v$.name.$errors)"

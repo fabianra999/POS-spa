@@ -1,21 +1,15 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="desserts"
-    :sort-by="[{ key: 'calories', order: 'asc' }]"
-    v-model:expanded="expanded"
-    item-value="name"
-    show-expand
-  >
+  <v-data-table :headers="headers" :items="dessertsUsers" :sort-by="[{ key: 'documentId', order: 'asc' }]"
+    v-model:expanded="expanded" item-value="name" show-expand>
     <template v-slot:top>
       <v-toolbar flat>
         <v-toolbar-title>My CRUD</v-toolbar-title>
         <v-divider class="mx-4" inset vertical></v-divider>
         <v-spacer></v-spacer>
-        <v-dialog v-model="dialog" max-width="500px">
+        <v-dialog v-model="dialog" max-width="80vw">
           <template v-slot:activator="{ props }">
             <v-btn class="mb-2" color="primary" dark v-bind="props">
-              New Item
+              Nuevo usuario
             </v-btn>
           </template>
           <v-card>
@@ -27,34 +21,80 @@
               <v-container>
                 <v-row>
                   <v-col cols="12" md="4" sm="6">
-                    <v-text-field
-                      v-model="editedItem.name"
-                      label="Dessert name"
-                    ></v-text-field>
+                    <v-text-field v-model="editedItem.name" label="Dessert name"></v-text-field>
                   </v-col>
                   <v-col cols="12" md="4" sm="6">
-                    <v-text-field
-                      v-model="editedItem.calories"
-                      label="Calories"
-                    ></v-text-field>
+                    <v-text-field v-model="editedItem.calories" label="Calories"></v-text-field>
                   </v-col>
                   <v-col cols="12" md="4" sm="6">
-                    <v-text-field
-                      v-model="editedItem.fat"
-                      label="Fat (g)"
-                    ></v-text-field>
+                    <v-text-field v-model="editedItem.fat" label="Fat (g)"></v-text-field>
                   </v-col>
                   <v-col cols="12" md="4" sm="6">
-                    <v-text-field
-                      v-model="editedItem.carbs"
-                      label="Carbs (g)"
-                    ></v-text-field>
+                    <v-text-field v-model="editedItem.carbs" label="Carbs (g)"></v-text-field>
                   </v-col>
                   <v-col cols="12" md="4" sm="6">
-                    <v-text-field
-                      v-model="editedItem.protein"
-                      label="Protein (g)"
-                    ></v-text-field>
+                    <v-text-field v-model="editedItem.protein" label="Protein (g)"></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-container>
+
+              // nuevo
+              <v-container>
+                <v-row>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="editedItemUser.name" :counter="10" :label="$t('name')"
+                      required></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="editedItemUser.lastName" :label="$t('lastName')"></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="editedItemUser.email" :label="$t('email')" required></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="editedItemUser.documentIdType" :label="$t('documentIdType')"></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="editedItemUser.documentId" :label="$t('documentIdType')"></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="editedItemUser.dateBirth" :label="$t('dateBirth')"></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-autocomplete v-model="editedItemUser.role" :label="$t('role')" :items="[
+                      'California',
+                      'Colorado',
+                      'Florida',
+                      'Georgia',
+                      'Texas',
+                      'Wyoming',
+                    ]"></v-autocomplete>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field v-model="editedItemUser.password" :label="$t('password')"></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-autocomplete v-model="editedItemUser.country" :label="$t('country')" :items="[
+                      'California',
+                      'Colorado',
+                      'Florida',
+                      'Georgia',
+                      'Texas',
+                      'Wyoming',
+                    ]"></v-autocomplete>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-autocomplete v-model="editedItemUser.city" :label="$t('city')" :items="[
+                      'California',
+                      'Colorado',
+                      'Florida',
+                      'Georgia',
+                      'Texas',
+                      'Wyoming',
+                    ]"></v-autocomplete>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-checkbox v-model="editedItemUser.state" :label="$t('state')"></v-checkbox>
                   </v-col>
                 </v-row>
               </v-container>
@@ -73,20 +113,11 @@
         </v-dialog>
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
-            <v-card-title class="text-h5"
-              >Are you sure you want to delete this item?</v-card-title
-            >
+            <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue-darken-1" variant="text" @click="closeDelete"
-                >Cancel</v-btn
-              >
-              <v-btn
-                color="blue-darken-1"
-                variant="text"
-                @click="deleteItemConfirm"
-                >OK</v-btn
-              >
+              <v-btn color="blue-darken-1" variant="text" @click="closeDelete">Cancel</v-btn>
+              <v-btn color="blue-darken-1" variant="text" @click="deleteItemConfirm">OK</v-btn>
               <v-spacer></v-spacer>
             </v-card-actions>
           </v-card>
@@ -104,13 +135,25 @@
     </template>
     <template v-slot:expanded-row="{ columns, item }">
       <tr>
-        <td :colspan="columns.length">More info about {{ item.name }}</td>
+        <td :colspan="columns.length">
+          Información del usuario - {{ item.name }}
+          <v-container fluid="true">
+            <v-row>
+              <v-col>
+                {{ item }}
+              </v-col>
+            </v-row>
+          </v-container>
+        </td>
       </tr>
     </template>
   </v-data-table>
 </template>
-  
-  <script>
+
+<script>
+import { useUserStore } from "@/stores/user";
+const userStore = useUserStore();
+
 export default {
   data: () => ({
     expanded: [],
@@ -118,18 +161,19 @@ export default {
     dialogDelete: false,
     headers: [
       {
-        title: "Dessert (100g serving)",
+        title: "Nombre",
         align: "start",
         sortable: false,
         key: "name",
       },
-      { title: "Calories", key: "calories" },
-      { title: "Fat (g)", key: "fat" },
-      { title: "Carbs (g)", key: "carbs" },
-      { title: "Protein (g)", key: "protein" },
+      { title: "Documento", key: "documentId" },
+      { title: "E-mail", key: "email" },
+      { title: "Rol", key: "role" },
+      { title: "Estado", key: "state" },
       { title: "Actions", key: "actions", sortable: false },
     ],
     desserts: [],
+    dessertsUsers: [],
     editedIndex: -1,
     editedItem: {
       name: "",
@@ -144,6 +188,34 @@ export default {
       fat: 0,
       carbs: 0,
       protein: 0,
+    },
+    defaultItemUser: {
+      name: "",
+      lastName: "",
+      documentIdType: 1,
+      documentId: "",
+      email: "",
+      age: null,
+      dateBirth: "",
+      role: null,
+      password: "",
+      country: null,
+      city: null,
+      state: false,
+    },
+    editedItemUser: {
+      name: "",
+      lastName: "",
+      documentIdType: 1,
+      documentId: "",
+      email: "",
+      age: null,
+      dateBirth: "",
+      role: null,
+      password: "",
+      country: null,
+      city: null,
+      state: false,
     },
   }),
 
@@ -164,87 +236,21 @@ export default {
 
   created() {
     this.initialize();
+
   },
 
   methods: {
     initialize() {
-      this.desserts = [
-        {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-        },
-        {
-          name: "Ice cream sandwich",
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-        },
-        {
-          name: "Eclair",
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-        },
-        {
-          name: "Cupcake",
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3,
-        },
-        {
-          name: "Gingerbread",
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9,
-        },
-        {
-          name: "Jelly bean",
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0,
-        },
-        {
-          name: "Lollipop",
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0,
-        },
-        {
-          name: "Honeycomb",
-          calories: 408,
-          fat: 3.2,
-          carbs: 87,
-          protein: 6.5,
-        },
-        {
-          name: "Donut",
-          calories: 452,
-          fat: 25.0,
-          carbs: 51,
-          protein: 4.9,
-        },
-        {
-          name: "KitKat",
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7,
-        },
-      ];
+      userStore.GET_USERS({ page: 1, perPage: 25 }).then(() => {
+        this.dessertsUsers = userStore.users.data;
+      });
     },
 
     editItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
-      this.editedItem = Object.assign({}, item);
+      this.editedIndex = this.dessertsUsers.findIndex(
+        (user) => user.id === { ...item }.id
+      );
+      this.editedItemUser = Object.assign({}, item);
       this.dialog = true;
     },
 
@@ -255,7 +261,9 @@ export default {
     },
 
     deleteItemConfirm() {
-      this.desserts.splice(this.editedIndex, 1);
+      userStore.DELETE_USER(this.editedItem.id).then(() => {
+        this.initialize();
+      });
       this.closeDelete();
     },
 
@@ -277,13 +285,22 @@ export default {
 
     save() {
       if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem);
-      } else {
-        this.desserts.push(this.editedItem);
+        userStore
+          .UPDATE_USER({
+            id: this.editedItemUser.id,
+            data: this.editedItemUser,
+          })
+          .then(() => {
+            this.initialize();
+          });
+        } else {
+          userStore.CREATE_USER(this.editedItemUser).then(() => {
+          this.initialize();
+        });
+        this.dessertsUsers.push(this.editedItemUser);
       }
       this.close();
     },
   },
 };
 </script>
-  
