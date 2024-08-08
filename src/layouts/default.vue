@@ -12,5 +12,5 @@
 </template>
 
 <script setup>
-//
+
 </script>

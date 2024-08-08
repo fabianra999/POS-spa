@@ -1,74 +1,43 @@
 import { defineStore } from "pinia";
-import axiosInstance from "../assets/utils/axiosInstance";
+import axiosInstance from "../plugins/axiosInstance";
 
 export const useCommonStore = defineStore("common", {
   // state
   state: () => ({
-    country: [
-      {
-        name: "Brazil",
-        code: "BR",
-        id: 1,
-      },
-    ],
-    city: [
-      {
-        name: "São Paulo",
-        code: "SP",
-        id: 1,
-      },
-    ],
-    headquarters: [
-      {
-        name: "Headquarters 1",
-        code: "HQ1",
-        id: 1,
-      },
-    ],
-    role: [
-      {
-        name: "Admin",
-        code: "ADM",
-        id: 1,
-      },
-      {
-        name: "User",
-        code: "USR",
-        id: 2,
-      },
-    ],
-    paymentMethods: [
-      {
-        name: "Credit Card",
-        code: "CC",
-        id: 1,
-      },
-      {
-        name: "Debit Card",
-        code: "DC",
-        id: 2,
-      },
-      {
-        name: "Bank Slip",
-        code: "BS",
-        id: 3,
-      },
-    ],
-    documentId: [
-      {
-        name: "CPF",
-        code: "CPF",
-        id: 1,
-      },
-      {
-        name: "CNPJ",
-        code: "CNPJ",
-        id: 2,
-      },
-    ],
+    users: [],
+    country: [],
+    city: [],
+    state: [],
+    documentIdType: [],
+    role: [],
+    paymentMethods: [],
+    inventaryType: [],
+    categories: [],
+    services: [],
+    theme: [],
+    login: [],
+    permissions: [],
+    loading: false,
   }),
   // getters
   getters: {},
   // actions
-  actions: {},
+  actions: {
+    async GET_Dictionarys(dictionary) {
+      try {
+        if (dictionary.id) {
+          const response = await axiosInstance.get(
+            `/${dictionary.name}/${dictionary.id}`
+          );
+          this[dictionary.name] = response.data;
+          return response.data;
+        }
+        const response = await axiosInstance.get(`/${dictionary.name}`);
+        this[dictionary.name] = response.data;
+        return response.data;
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      }
+    },
+  },
 });

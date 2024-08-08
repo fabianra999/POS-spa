@@ -13,7 +13,23 @@
       "password": "123456",
       "country": 1,
       "city": 1,
-      "img": "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png",
+      "img": "https://randomuser.me/api/portraits/women/85.jpg",
+      "state": true
+    },
+    {
+      "id": 3,
+      "name": "Claudia",
+      "lastName": "Ruis",
+      "documentIdTYpe": 1,
+      "documentId": "1032425888",
+      "email": "claudia@gmail.com",
+      "age": 33,
+      "dateBirth": "1989-06-06",
+      "role": 1,
+      "password": "123456",
+      "country": 1,
+      "city": 1,
+      "img": "https://randomuser.me/api/portraits/women/85.jpg",
       "state": true
     }
   ],
@@ -50,7 +66,7 @@
       "name": "Inactivo"
     }
   ],
-  "documentIdTYpe": [
+  "documentIdType": [
     {
       "id": 1,
       "name": "Cedula de Identidad"
@@ -194,28 +210,62 @@
     }
   },
   "login": {
-    "title": "Iniciar Sesión",
-    "email": "Correo Electrónico",
-    "password": "Contraseña",
-    "rememberMe": "Recuérdame",
-    "forgotPassword": "¿Olvidaste tu contraseña?",
-    "login": "Iniciar Sesión"
+    "user": 3
   },
-  "permissions":{
-    "admin": {
-      "customers": true,
-      "users": true,
-      "inventory": true,
-      "services": true,
-      "billing": true,
-      "settings": true,
-      "logout": true
+  "permissions": [
+    {
+      "id": 1,
+      "name": "admin",
+      "routes": [
+        {
+          "state": true,
+          "icon": "mdi-clock",
+          "url": "BillingView",
+          "name": "Facturación"
+        },
+        {
+          "state": true,
+          "icon": "mdi-clock",
+          "url": "CustomerView",
+          "name": "Clientes"
+        },
+        {
+          "state": true,
+          "icon": "mdi-clock",
+          "url": "InventaryView",
+          "name": "Inventario"
+        },
+        {
+          "state": true,
+          "icon": "mdi-clock",
+          "url": "ReportsView",
+          "name": "Informes"
+        },
+        {
+          "state": true,
+          "icon": "mdi-clock",
+          "url": "ServicesView",
+          "name": "Servicios"
+        },
+        {
+          "state": true,
+          "icon": "mdi-clock",
+          "url": "UserView",
+          "name": "Usuario"
+        }
+      ]
     },
-    "user": {
-      "customers": true,
-      "inventory": true,
-      "services": true,
-      "logout": true
+    {
+      "id": 2,
+      "name": "user",
+      "routes": [
+        {
+          "state": true,
+          "icon": "mdi-clock",
+          "url": "BillingView",
+          "name": "Facturación"
+        }
+      ]
     }
-  }
+  ]
 }
