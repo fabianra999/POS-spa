@@ -27,9 +27,24 @@
       "dateBirth": "1989-06-06",
       "role": "1",
       "password": "123456",
-      "country": "Colorado",
+      "country": "California",
       "city": 1,
       "img": "https://randomuser.me/api/portraits/women/85.jpg",
+      "state": true
+    },
+    {
+      "id": "ba8d",
+      "name": "Tito mmm",
+      "lastName": "Puente",
+      "documentIdType": "1",
+      "documentId": 123123,
+      "email": "Puente@g.com",
+      "age": null,
+      "dateBirth": "2024-08-09T14:25:53.240Z",
+      "role": "1",
+      "password": "werwerwer",
+      "country": "1",
+      "city": "1",
       "state": true
     }
   ],

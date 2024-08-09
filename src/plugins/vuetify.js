@@ -14,6 +14,8 @@ import i18n from '@/plugins/i18n'
 
 // Composables
 import { createVuetify } from 'vuetify'
+import { VDateInput } from 'vuetify/labs/VDateInput'
+
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
@@ -22,5 +24,8 @@ export default createVuetify({
   },
   locale: {
     adapter: createVueI18nAdapter({ i18n, useI18n }),
+  },
+  components: {
+    VDateInput,
   },
 })
