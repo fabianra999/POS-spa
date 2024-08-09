@@ -1,6 +1,6 @@
 // Plugins
 import { registerPlugins } from '@/plugins'
-
+import * as filters from '@/utils/filters'
 
 // Components
 import App from './App.vue'
@@ -9,6 +9,8 @@ import App from './App.vue'
 import { createApp } from 'vue'
 
 const app = createApp(App)
+
+app.config.globalProperties.$filters = filters
 
 registerPlugins(app)
 

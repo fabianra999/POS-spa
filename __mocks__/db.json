@@ -4,7 +4,7 @@
       "id": "1",
       "name": "Fabian",
       "lastName": "Ramirez Alba",
-      "documentIdTYpe": 1,
+      "documentIdType": 1,
       "documentId": "1032425808",
       "email": "fabinara@gmail.com",
       "age": 33,
@@ -20,7 +20,7 @@
       "id": "3",
       "name": "Claudia",
       "lastName": "Ruis",
-      "documentIdTYpe": 1,
+      "documentIdType": 1,
       "documentId": "1032425888",
       "email": "claudia@gmail.com",
       "age": 33,
@@ -53,7 +53,7 @@
       "id": "1",
       "name": "Cliente 1",
       "lastName": "Apellido 1",
-      "documentIdTYpe": 1,
+      "documentIdType": 1,
       "documentId": "1032425808",
       "email": ""
     }

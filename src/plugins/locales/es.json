@@ -1,9 +1,14 @@
 {
     "userTitle": "Administración de usuarios",
     "userSubTitle": "En este módulo podrás administrar los usuarios de la herramienta",
+    "users": "Usuarios",
+    "newUser": "Nuevo usuario",
+    "editUser": "Editar usuario",
+    "infoUser": "Información del usuario",
     "name": "Nombre",
     "lastName": "Apellido",
     "email": "Correo",
+    "documentIdType": "Tipo Documento ID",
     "documentId": "Documento ID",
     "age": "Edad",
     "dateBirth": "Fecha de nacimiento",
@@ -13,6 +18,12 @@
     "city": "Ciudad",
     "state": "Estado",
     "policies": "¿Estás de acuerdo?",
+    "id": "ID",
+    "img": "Imagen",
+    "alert-Delete": "¿Estás seguro de eliminar este usuario?",
     "btn-submit": "Enviar",
-    "btn-clear": "Limpiar"
+    "btn-save": "Guardar",
+    "btn-clear": "Limpiar",
+    "btn-cancel": "Cancelar",
+    "btn-Reset": "Reiniciar"
 }

@@ -5,17 +5,16 @@
  */
 
 // Styles
-import '@mdi/font/css/materialdesignicons.css'
-import 'vuetify/styles'
+import "@mdi/font/css/materialdesignicons.css";
+import "vuetify/styles";
 
-import { createVueI18nAdapter } from 'vuetify/locale/adapters/vue-i18n'
-import { useI18n } from 'vue-i18n'
-import i18n from '@/plugins/i18n'
+import { createVueI18nAdapter } from "vuetify/locale/adapters/vue-i18n";
+import { useI18n } from "vue-i18n";
+import i18n from "@/plugins/i18n";
 
 // Composables
-import { createVuetify } from 'vuetify'
-import { VDateInput } from 'vuetify/labs/VDateInput'
-
+import { createVuetify } from "vuetify";
+import { VDateInput } from "vuetify/labs/VDateInput";
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
@@ -28,4 +27,4 @@ export default createVuetify({
   components: {
     VDateInput,
   },
-})
+});
