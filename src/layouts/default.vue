@@ -6,11 +6,13 @@
       <v-main>
         <router-view />
       </v-main>
+      <AppFooter />
     </v-layout>
-    <AppFooter />
   </v-app>
 </template>
 
 <script setup>
-
 </script>
+
+<style lang="scss" scoped>
+</style>

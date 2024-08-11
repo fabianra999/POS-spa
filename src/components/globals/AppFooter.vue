@@ -19,7 +19,7 @@
       class="text-caption text-disabled"
       style="position: absolute; right: 16px;"
     >
-      &copy; 2016-{{ (new Date()).getFullYear() }} <span class="d-none d-sm-inline-block">Vuetify, LLC</span>
+      &copy; 2024-{{ (new Date()).getFullYear() }}
       —
       <a
         class="text-decoration-none on-surface"
@@ -27,7 +27,7 @@
         rel="noopener noreferrer"
         target="_blank"
       >
-        MIT License
+        Fabian Ramirez Alba
       </a>
     </div>
   </v-footer>

@@ -3,6 +3,11 @@ import { defineStore } from "pinia";
 export const usethemeStore = defineStore("theme", {
   // state
   state: () => ({
+    st_headerPages_h1: {
+      color: "#484848",
+      fontWeight: "300",
+    },
+
     st_p: {
       color: "black",
       size: "bold",
@@ -10,8 +15,7 @@ export const usethemeStore = defineStore("theme", {
     },
     st_h1: {
       color: "black",
-      size: "bold",
-      style: "italic",
+      fontWeight: "bold",
     },
     st_h2: {
       color: "black",
@@ -19,14 +23,13 @@ export const usethemeStore = defineStore("theme", {
       style: "italic",
     },
     st_input: {
-      color: "black",
-      size: "bold",
-      style: "italic",
+      variant: "outlined",
     },
     st_button: {
-      color: "black",
-      size: "bold",
-      style: "italic",
+      color: "#5865f2",
+      rounded: "0",
+      size: "large",
+      variant: "tonal",
     },
     st_header: {
       color: "black",

@@ -24,13 +24,18 @@
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="80vw">
           <template v-slot:activator="{ props }">
-            <v-btn class="mb-2" color="primary" dark v-bind="props">
+            <v-btn
+              prepend-icon="$vuetify"
+              v-bind="props"
+              :color="st_button.color"
+              :variant="st_button.variant"
+            >
               {{ $t("newUser") }}
             </v-btn>
           </template>
-          <v-card>
+          <v-card class="formUser">
             <v-card-title>
-              <span class="text-h5">{{ formTitle }}</span>
+              <span class="text-h3">{{ formTitle }}</span>
             </v-card-title>
             <v-card-text>
               <v-form>
@@ -45,6 +50,7 @@
                         :error-messages="
                           getErrorMessage(v$.editedItemUser.name.$errors)
                         "
+                        :variant="st_input.variant"
                         @blur="v$.editedItemUser.name.$touch"
                         @input="v$.editedItemUser.name.$touch"
                       ></v-text-field>
@@ -58,6 +64,7 @@
                         :error-messages="
                           getErrorMessage(v$.editedItemUser.lastName.$errors)
                         "
+                        :variant="st_input.variant"
                         @blur="v$.editedItemUser.lastName.$touch"
                         @input="v$.editedItemUser.lastName.$touch"
                       ></v-text-field>
@@ -71,6 +78,7 @@
                         :error-messages="
                           getErrorMessage(v$.editedItemUser.email.$errors)
                         "
+                        :variant="st_input.variant"
                         @blur="v$.editedItemUser.email.$touch"
                         @input="v$.editedItemUser.email.$touch"
                       ></v-text-field>
@@ -88,6 +96,7 @@
                             v$.editedItemUser.documentIdType.$errors
                           )
                         "
+                        :variant="st_input.variant"
                         @blur="v$.editedItemUser.documentIdType.$touch"
                         @input="v$.editedItemUser.documentIdType.$touch"
                       ></v-autocomplete>
@@ -100,6 +109,7 @@
                         :error-messages="
                           getErrorMessage(v$.editedItemUser.documentId.$errors)
                         "
+                        :variant="st_input.variant"
                         @blur="v$.editedItemUser.documentId.$touch"
                         @input="v$.editedItemUser.documentId.$touch"
                       ></v-text-field>
@@ -108,10 +118,12 @@
                       <v-date-input
                         v-model="editedItemUser.dateBirth"
                         :label="$t('dateBirth')"
+                        hide-details="true"
                         required
                         :error-messages="
                           getErrorMessage(v$.editedItemUser.dateBirth.$errors)
                         "
+                        :variant="st_input.variant"
                         @blur="v$.editedItemUser.dateBirth.$touch"
                         @input="v$.editedItemUser.dateBirth.$touch"
                       ></v-date-input>
@@ -127,6 +139,7 @@
                         :error-messages="
                           getErrorMessage(v$.editedItemUser.role.$errors)
                         "
+                        :variant="st_input.variant"
                         @blur="v$.editedItemUser.role.$touch"
                         @input="v$.editedItemUser.role.$touch"
                       ></v-autocomplete>
@@ -139,6 +152,7 @@
                         :error-messages="
                           getErrorMessage(v$.editedItemUser.password.$errors)
                         "
+                        :variant="st_input.variant"
                         @blur="v$.editedItemUser.password.$touch"
                         @input="v$.editedItemUser.password.$touch"
                       ></v-text-field>
@@ -154,6 +168,7 @@
                         :error-messages="
                           getErrorMessage(v$.editedItemUser.country.$errors)
                         "
+                        :variant="st_input.variant"
                         @blur="v$.editedItemUser.country.$touch"
                         @input="v$.editedItemUser.country.$touch"
                       ></v-autocomplete>
@@ -169,6 +184,7 @@
                         :error-messages="
                           getErrorMessage(v$.editedItemUser.city.$errors)
                         "
+                        :variant="st_input.variant"
                         @blur="v$.editedItemUser.city.$touch"
                         @input="v$.editedItemUser.city.$touch"
                       ></v-autocomplete>
@@ -181,6 +197,7 @@
                         :error-messages="
                           getErrorMessage(v$.editedItemUser.state.$errors)
                         "
+                        :variant="st_input.variant"
                         @blur="v$.editedItemUser.state.$touch"
                         @input="v$.editedItemUser.state.$touch"
                       ></v-checkbox>
@@ -191,28 +208,49 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue-darken-1" variant="text" @click="close">
+
+              <v-btn
+                :variant="st_button.variant"
+                :color="st_button.color"
+                :size="st_button.size"
+                @click="close"
+              >
                 {{ $t("btn-cancel") }}
               </v-btn>
-              <v-btn color="blue-darken-1" variant="text" @click="save">
+
+              <v-btn
+                :variant="st_button.variant"
+                :color="st_button.color"
+                :size="st_button.size"
+                @click="save"
+              >
                 {{ $t("btn-save") }}
               </v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
-        <v-dialog v-model="dialogDelete" max-width="500px">
-          <v-card>
-            <v-card-title class="text-h5">
+        <v-dialog v-model="dialogDelete" width="auto" scrollable>
+          <v-card prepend-icon="mdi-earth" :title="$t('deleteUser')">
+            <v-card-title
+              class="text-h6 pa-7 justify-space-between align-center"
+            >
               {{ $t("alert-Delete") }}
             </v-card-title>
-            <v-card-actions>
+            <v-divider></v-divider>
+            <v-card-actions class="">
               <v-spacer></v-spacer>
-              <v-btn color="blue-darken-1" variant="text" @click="closeDelete">
+              <v-btn
+                :variant="st_button.variant"
+                :color="st_button.color"
+                :size="st_button.size"
+                @click="closeDelete"
+              >
                 {{ $t("btn-cancel") }}
               </v-btn>
               <v-btn
-                color="blue-darken-1"
-                variant="text"
+                :variant="st_button.variant"
+                :color="st_button.color"
+                :size="st_button.size"
                 @click="deleteItemConfirm"
               >
                 {{ $t("btn-save") }}
@@ -238,11 +276,18 @@
     <template v-slot:expanded-row="{ columns, item }">
       <tr>
         <td :colspan="columns.length">
-         {{ $t("infoUser") }} - {{ item.name }} {{ item.lastName }}
-          <v-container fluid="true">
+          <h2 class="mt-6">
+            {{ $t("infoUser") }} - {{ item.name }} {{ item.lastName }}
+          </h2>
+          <v-container :fluid="true">
             <v-row>
               <v-col v-for="(date, key) in item" :key="key" cols="12" md="3">
-                <v-card class="mx-auto my-2" elevation="5">
+                <v-card
+                  class="mx-auto my-2"
+                  elevation="5"
+                  variant="plain"
+                  color="tonal"
+                >
                   <v-card-item>
                     <v-card-title> {{ $t(key) }} </v-card-title>
                     <v-card-subtitle>
@@ -267,7 +312,10 @@ import { useI18n } from "vue-i18n";
 import { useUserStore } from "@/stores/user";
 import { useCommonStore } from "@/stores/common";
 
-import { findByKey } from "@/utils/utils"; // Importa las funciones de utils.js
+import { storeToRefs } from "pinia";
+import { usethemeStore } from "@/stores/theme";
+
+const themeStore = usethemeStore();
 
 const userStore = useUserStore();
 const commonStore = useCommonStore();
@@ -284,6 +332,8 @@ export default {
     const listCountry = commonStore.country;
     const listCity = commonStore.city;
 
+    const { st_button, st_input } = storeToRefs(themeStore);
+
     return {
       v$: useVuelidate(),
       t,
@@ -291,6 +341,8 @@ export default {
       listRole,
       listCountry,
       listCity,
+      st_button,
+      st_input,
     };
   },
   data: () => ({
@@ -460,3 +512,36 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.formUser {
+  .v-card-title {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0em 1em;
+    padding: 2em 1em;
+    border-bottom: 1px solid grey;
+    span {
+      font-weight: 200;
+    }
+  }
+  .v-card-actions {
+    justify-content: flex-end;
+    margin: 0em 1em;
+    padding: 2em 1em;
+    border-top: 1px solid grey;
+  }
+}
+.v-data-table {
+  .v-toolbar {
+    .v-btn {
+      margin: 0em 1em;
+    }
+  }
+}
+.v-overlay__content {
+  .v-card-item {
+    background-color: gainsboro;
+  }
+}
+</style>

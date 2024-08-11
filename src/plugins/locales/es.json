@@ -1,7 +1,8 @@
 {
-    "userTitle": "Administración de usuarios",
-    "userSubTitle": "En este módulo podrás administrar los usuarios de la herramienta",
+    "userTitle": "Administración \nde usuarios",
+    "userSubTitle": "En esta página podrás gestionar tus colaboradores. ver toda su información personal y asignarles un perfil.",
     "users": "Usuarios",
+    "deleteUser":"Eliminar usuario",
     "newUser": "Nuevo usuario",
     "editUser": "Editar usuario",
     "infoUser": "Información del usuario",

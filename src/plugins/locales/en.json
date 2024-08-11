@@ -3,6 +3,7 @@
     "userSubTitle": "In this module you can manage the users of the tool",
     "users": "Users",
     "newUser": "New user",
+    "deleteUser":"Delete user",
     "editUser": "Edit user",
     "infoUser": "User information",
     "name": "Name",
