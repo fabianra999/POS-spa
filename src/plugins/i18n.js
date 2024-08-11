@@ -5,35 +5,6 @@ import esValidationMessages from "./locales/es-validationMessages.json";
 import enLocales from "./locales/en.json";
 
 const messages = {
-  en: {
-    ...enLocales,
-    key: "key",
-    validation: {
-      required: "This field is required.",
-      minLength: "This field must have at least {min} characters.",
-    },
-    $vuetify: {
-      open: "Open",
-      dataFooter: {
-        itemsPerPageText: "Items per page:",
-        itemsPerPageAll: "All",
-        pageText: "Page:",
-        firstPage: "First page",
-        prevPage: "Previous page",
-        nextPage: "Next page",
-        lastPage: "Last page",
-      },
-      pagination: {
-        ariaLabel: {
-          root: "Pagination",
-        },
-      },
-      confirmEdit: {
-        ok: "Confirm Edit",
-        cancel: "Cancel",
-      },
-    },
-  },
   es: {
     ...esLocales,
     key: "key",
@@ -60,6 +31,35 @@ const messages = {
       confirmEdit: {
         ok: "Confirmar Edición",
         cancel: "Cancelar",
+      },
+    },
+  },
+  en: {
+    ...enLocales,
+    key: "key",
+    validation: {
+      required: "This field is required.",
+      minLength: "This field must have at least {min} characters.",
+    },
+    $vuetify: {
+      open: "Open",
+      dataFooter: {
+        itemsPerPageText: "Items per page:",
+        itemsPerPageAll: "All",
+        pageText: "Page:",
+        firstPage: "First page",
+        prevPage: "Previous page",
+        nextPage: "Next page",
+        lastPage: "Last page",
+      },
+      pagination: {
+        ariaLabel: {
+          root: "Pagination",
+        },
+      },
+      confirmEdit: {
+        ok: "Confirm Edit",
+        cancel: "Cancel",
       },
     },
   },

@@ -144,7 +144,17 @@
       "price": 10,
       "quantity": 10,
       "inventaryType": 1,
-      "location": "A1"
+      "location": "A1",
+      "state": true
+    },
+    {
+      "id": "8137",
+      "name": "Crema",
+      "price": "10000",
+      "quantity": "2",
+      "inventaryType": "1",
+      "location": "A1",
+      "state": true
     }
   ],
   "categories": [

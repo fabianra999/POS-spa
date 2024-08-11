@@ -1,13 +1,13 @@
-<!-- filename: InventaryView.vue -->
 <template>
-    <div>
-        <h1>Billing</h1>
-    </div>
-</template>
-
-<script setup>
-
-</script>
-
-<style lang="scss" scoped>
-</style>
+    <HeaderPagesCom :title="$t('inventoryTitle')" :subTitle="$t('inventorySubTitle')" />
+    <TableInventory />
+  </template>
+  
+  <script setup>
+  import { reactive, onMounted, ref, computed } from "vue";
+  
+  onMounted(() => {});
+  </script>
+  
+  <style lang="scss" scoped>
+  </style>

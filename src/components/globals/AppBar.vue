@@ -11,13 +11,62 @@
 
     <v-spacer></v-spacer>
 
-    <template v-if="$vuetify.display.mdAndUp">
-      <v-btn icon="mdi-magnify" variant="text"></v-btn>
+    <template v-if="$vuetify.display.mdAndUp"> </template>
+    <v-menu v-model="menu" :close-on-content-click="false" location="end">
+      <template v-slot:activator="{ props }">
+        <v-btn v-bind="props" icon="mdi-dots-vertical" variant="text"></v-btn>
+      </template>
 
-      <v-btn icon="mdi-filter" variant="text"></v-btn>
-    </template>
+      <v-card min-width="300">
+        <v-list>
+          <v-list-item
+            prepend-avatar="https://cdn.vuetifyjs.com/images/john.jpg"
+            subtitle="Founder of Vuetify"
+            title="John Leider"
+          >
+            <template v-slot:append>
+              <v-btn
+                :class="fav ? 'text-red' : ''"
+                icon="mdi-heart"
+                variant="text"
+                @click="fav = !fav"
+              ></v-btn>
+            </template>
+          </v-list-item>
+        </v-list>
 
-    <v-btn icon="mdi-dots-vertical" variant="text"></v-btn>
+        <v-divider></v-divider>
+
+        <v-list>
+          <v-list-item>
+            <v-switch
+              v-model="message"
+              color="purple"
+              label="Enable messages"
+              hide-details
+            ></v-switch>
+          </v-list-item>
+
+          <v-list-item>
+            <v-switch
+              v-model="hints"
+              color="purple"
+              label="Enable hints"
+              hide-details
+            ></v-switch>
+          </v-list-item>
+        </v-list>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+          <v-btn variant="text" @click="menu = false"> Cancel </v-btn>
+          <v-btn color="primary" variant="text" @click="menu = false">
+            Save
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-menu>
   </v-app-bar>
 
   <v-navigation-drawer
@@ -55,11 +104,17 @@ export default {
     const group = ref(null);
     const adminOptions = ref(false);
 
+    const fav = ref(true);
+    const menu = ref(false);
+    const message = ref(false);
+    const hints = ref(true);
+
     watch(group, (newValue, oldValue) => {
       drawer.value = false;
     });
     onMounted(() => {
-      adminOptions.value = commonStore.permissions.name === "admin" ? true : false;
+      adminOptions.value =
+        commonStore.permissions.name === "admin" ? true : false;
       items.value = [...commonStore.permissions.routes];
     });
     return {
@@ -67,6 +122,11 @@ export default {
       drawer,
       group,
       adminOptions,
+
+      fav,
+      menu,
+      message,
+      hints,
     };
   },
 };
