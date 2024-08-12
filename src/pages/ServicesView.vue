@@ -1,13 +1,16 @@
-<!-- filename: ServicesView.vue -->
 <template>
-    <div>
-        <h1>Billing</h1>
-    </div>
+  <HeaderPagesCom
+    :title="$t('servicesTitle')"
+    :subTitle="$t('inventorySubTitle')"
+  />
+  <TableServices />
 </template>
+  
+  <script setup>
+import { reactive, onMounted, ref, computed } from "vue";
 
-<script setup>
-
+onMounted(() => {});
 </script>
-
-<style lang="scss" scoped>
+  
+  <style lang="scss" scoped>
 </style>

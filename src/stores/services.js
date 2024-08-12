@@ -1,88 +1,29 @@
 import { defineStore } from "pinia";
-import axiosInstance from "../assets/utils/axiosInstance";
+import axiosInstance from "../plugins/axiosInstance";
 
 export const useServicesSoldStore = defineStore("servicesSold", {
   // state
   state: () => ({
-    categories: [
-      {
-        id: 1,
-        state: true,
-        name: "Service 1",
-        description: "Description of service 1",
-        location: "Location 1",
-      },
-    ],
-    services: [
-      {
-        id: 1,
-        state: true,
-        name: "Service 1",
-        price: 100,
-        duration: 60,
-        description: "Description of service 1",
-        category: "Category 1",
-        location: "Location 1",
-      },
-    ],
+    services: [],
   }),
   // getters
   getters: {},
   // actions
   actions: {
-    async GET_CATEGORIES() {
+    async GET_SERVICE(serviceId){
       try {
         const response = await axiosInstance.get(
-          `https://api.example.com/categories`
+          `services/${serviceId}`
         );
-        this.categories = response.data;
+        return response.data;
       } catch (error) {
-        console.error("Error fetching categories:", error);
+        console.error("Error fetching service:", error);
       }
     },
-    async GET_CATEGORY(categoryId) {
+    async GET_SERVICES(data) {
       try {
         const response = await axiosInstance.get(
-          `https://api.example.com/categories/${categoryId}`
-        );
-        this.category = response.data;
-      } catch (error) {
-        console.error("Error fetching category:", error);
-      }
-    },
-    async POST_CATEGORY(category) {
-      try {
-        await axiosInstance.post(
-          `https://api.example.com/categories`,
-          category
-        );
-      } catch (error) {
-        console.error("Error creating category:", error);
-      }
-    },
-    async PUT_CATEGORY(category) {
-      try {
-        await axiosInstance.put(
-          `https://api.example.com/categories/${category.id}`,
-          category
-        );
-      } catch (error) {
-        console.error("Error updating category:", error);
-      }
-    },
-    async DELETE_CATEGORY(categoryId) {
-      try {
-        await axiosInstance.delete(
-          `https://api.example.com/categories/${categoryId}`
-        );
-      } catch (error) {
-        console.error("Error deleting category:", error);
-      }
-    },
-    async GET_SERVICES() {
-      try {
-        const response = await axiosInstance.get(
-          `https://api.example.com/services`
+          `services?_page=${data.page}&_per_page=${data.perPage}`
         );
         this.services = response.data;
       } catch (error) {
@@ -91,7 +32,7 @@ export const useServicesSoldStore = defineStore("servicesSold", {
     },
     async POST_SERVICE(service) {
       try {
-        await axiosInstance.post(`https://api.example.com/services`, service);
+        await axiosInstance.post(`services`, service);
       } catch (error) {
         console.error("Error creating service:", error);
       }
@@ -99,8 +40,8 @@ export const useServicesSoldStore = defineStore("servicesSold", {
     async PUT_SERVICE(service) {
       try {
         await axiosInstance.put(
-          `https://api.example.com/services/${service.id}`,
-          service
+          `services/${service.id}`,
+          service.data
         );
       } catch (error) {
         console.error("Error updating service:", error);
@@ -109,7 +50,7 @@ export const useServicesSoldStore = defineStore("servicesSold", {
     async DELETE_SERVICE(serviceId) {
       try {
         await axiosInstance.delete(
-          `https://api.example.com/services/${serviceId}`
+          `services/${serviceId}`
         );
       } catch (error) {
         console.error("Error deleting service:", error);

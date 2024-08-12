@@ -102,14 +102,10 @@
     },
     {
       "id": "2",
-      "name": "Cliente"
-    },
-    {
-      "id": "3",
       "name": "Gerente"
     },
     {
-      "id": "4",
+      "id": "3",
       "name": "Vendedor"
     }
   ],
@@ -152,7 +148,7 @@
       "name": "Crema",
       "price": "10000",
       "quantity": "2",
-      "inventaryType": "1",
+      "inventaryType": "2",
       "location": "A1",
       "state": true
     }
@@ -160,7 +156,19 @@
   "categories": [
     {
       "id": "1",
-      "name": "Categoría 1"
+      "name": "Corte pelo"
+    },
+    {
+      "id": "2",
+      "name": "Peinado pelo"
+    },
+    {
+      "id": "3",
+      "name": "Manicure"
+    },
+    {
+      "id": "4",
+      "name": "Pedicure"
     }
   ],
   "services": [
@@ -169,7 +177,8 @@
       "name": "Servicio 1",
       "price": 10,
       "duration": 60,
-      "category": 1
+      "category": "3",
+      "state": true
     }
   ],
   "billing": [

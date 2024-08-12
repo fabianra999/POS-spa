@@ -38,5 +38,8 @@
   "newInventary": "New product",
   "editInventary": "Edit product",
   "alert-Delete-inventary": "Are you sure you want to delete this product?",
-  "deleteInventary": "Delete product"
+  "deleteInventary": "Delete product",
+  "servicesTitle": "Service Management",
+  "category": "Category",
+  "duration": "Duration"
 }
