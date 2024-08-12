@@ -41,5 +41,11 @@
   "deleteInventary": "Eliminar producto",
   "servicesTitle": "Administración de servicios",
   "category": "Categoria",
-  "duration": "Duracion"
+  "duration": "Duracion",
+  "customerTitle": "Administración \nde clientes",
+  "customerSubTitle": "En esta página podrás gestionar tus clientes. ver toda su información personal y adminstrar.",
+  "customer": "Cliente",
+  "newCustomer": "Nuevo cliente",
+  "editCustomer": "Editar cliente",
+  "deleteCustomer": "Eliminar cliente"
 }

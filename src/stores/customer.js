@@ -1,65 +1,61 @@
 import { defineStore } from "pinia";
-import axiosInstance from "../assets/utils/axiosInstance";
+import axiosInstance from "../plugins/axiosInstance";
 
 
 export const useCustomerStore = defineStore("customer", {
   // state
   state: () => ({
     count: 0,
-    customer: {
-      id: null,
-      name: "",
-      lastName: "",
-      documentId: "",
-      age: null,
-      dateBirth: "",
-      role: null,
-      country: null,
-      city: null,
-      state: null,
-    },
+    customers: [],
   }),
   // getters
   getters: {
   },
   // actions
   actions: {
-    async GET_CUSTOMER(userId) {
+    async GET_CUSTOMER(customerId) {
       try {
         const response = await axiosInstance.get(
-          `https://api.example.com/users/${userId}`
+          `customers/${customerId}`
         );
-        this.user = response.data;
+        this.customers = response.data;
       } catch (error) {
-        console.error("Error fetching user:", error);
+        console.error("Error fetching customer:", error);
       }
     },
-    async GET_CUSTOMERS() {
+    async GET_CUSTOMERS(data) {
       try {
         const response = await axiosInstance.get(
-          `https://api.example.com/users`
+          `customers?_page=${data.page}&_per_page=${data.perPage}`
         );
-        this.users = response.data;
+        this.customers = response.data;
       } catch (error) {
-        console.error("Error fetching users:", error);
+        console.error("Error fetching customer:", error);
       }
     },
-    async POST_CUSTOMER(user) {
+    async POST_CUSTOMER(customer) {
       try {
-        await axiosInstance.post("https://api.example.com/users", user);
+        await axiosInstance.post("customers", customer);
       } catch (error) {
-        console.error("Error creating user:", error);
+        console.error("Error creating customer:", error);
       }
     },
-    async PUT_CUSTOMER(user) {
+    async PUT_CUSTOMER(customer) {
       try {
         await axiosInstance.put(
-          `https://api.example.com/users/${user.id}`,
-          user
+          `customers/${customer.id}`,
+          customer.data
         );
       } catch (error) {
-        console.error("Error updating user:", error);
+        console.error("Error updating customer:", error);
       }
-    }
+    },
+    async DELETE_CUSTOMER(customerId) {
+      try {
+        await axiosInstance.delete(`customers/${customerId}`);
+      } catch (error) {
+        console.error("Error deleting customer:", error);
+      }
+    },
   },
 });

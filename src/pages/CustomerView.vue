@@ -1,13 +1,13 @@
-<!-- filename: CustomerView.vue -->
 <template>
-    <div>
-        <h1>CustomerView</h1>
-    </div>
-</template>
-
-<script setup>
-
-</script>
-
-<style lang="scss" scoped>
-</style>
+    <HeaderPagesCom :title="$t('customerTitle')" :subTitle="$t('customerSubTitle')" />
+    <TableCustomer />
+  </template>
+  
+  <script setup>
+  import { reactive, onMounted, ref, computed } from "vue";
+  
+  onMounted(() => {});
+  </script>
+  
+  <style lang="scss" scoped>
+  </style>

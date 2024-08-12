@@ -50,12 +50,16 @@
   ],
   "customers": [
     {
-      "id": "1",
-      "name": "Cliente 1",
-      "lastName": "Apellido 1",
+      "id": "3",
+      "name": "Claudia",
+      "lastName": "Ruis",
       "documentIdType": 1,
-      "documentId": "1032425808",
-      "email": ""
+      "documentId": "1032425888",
+      "email": "claudia@gmail.com",
+      "dateBirth": "1989-06-06",
+      "country": "1",
+      "city": "1",
+      "state": true
     }
   ],
   "country": [

@@ -1,4 +1,3 @@
-<!-- filename: UserView.vue -->
 <template>
   <HeaderPagesCom :title="$t('userTitle')" :subTitle="$t('userSubTitle')" />
   <TableUser />

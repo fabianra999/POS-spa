@@ -41,5 +41,11 @@
   "deleteInventary": "Delete product",
   "servicesTitle": "Service Management",
   "category": "Category",
-  "duration": "Duration"
+  "duration": "Duration",
+  "customerTitle": "Customer \nManagement",
+  "customerSubTitle": "On this page you can manage your clients, view all their personal information and administer them.",
+  "customer": "Customer",
+  "newCustomer": "New customer",
+  "editCustomer": "Edit customer",
+  "deleteCustomer": "Delete customer"
 }
