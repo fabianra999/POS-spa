@@ -28,6 +28,7 @@ export const useUserStore = defineStore("user", {
           `users?_page=${data.page}&_per_page=${data.perPage}`
         );
         this.users = response.data;
+        return response.data;
       } catch (error) {
         console.error("Error fetching users:", error);
       }

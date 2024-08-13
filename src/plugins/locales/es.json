@@ -47,5 +47,10 @@
   "customer": "Cliente",
   "newCustomer": "Nuevo cliente",
   "editCustomer": "Editar cliente",
-  "deleteCustomer": "Eliminar cliente"
+  "deleteCustomer": "Eliminar cliente",
+  "invoicesTitle": "Administración \nde facturas",
+  "invoiceSubTitle": " En esta página podrás gestionar tus facturas y ver toda su información.",
+  "invoice": "Facturas",
+  "newInvoice": "Nueva factura",
+  "editInvoice": "Editar Factura"
 }

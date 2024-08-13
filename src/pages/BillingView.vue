@@ -1,8 +1,5 @@
-<!-- filename: BillingView.vue -->
 <template>
-  <div>
-    <h1>BillingPage</h1>
-  </div>
+  <billingModule />
 </template>
 
 <script setup>

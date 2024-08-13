@@ -185,14 +185,16 @@
       "state": true
     }
   ],
-  "billing": [
+  "billings": [
     {
       "id": "1",
+      "seller": 1,
+      "cashier": 1,
       "customer": 1,
       "paymentMethod": 1,
       "total": 10,
       "date": "2022-10-10",
-      "state": 1
+      "state": true
     }
   ],
   "theme": {

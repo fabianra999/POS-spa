@@ -1,10 +1,13 @@
 import { defineStore } from "pinia";
+import { useUserStore } from "@/stores/user";
+
 import axiosInstance from "../plugins/axiosInstance";
 
 export const useCommonStore = defineStore("common", {
   // state
   state: () => ({
     users: [],
+    usersList: [],
     country: [],
     city: [],
     state: [],
@@ -37,6 +40,18 @@ export const useCommonStore = defineStore("common", {
         return response.data;
       } catch (error) {
         console.error("Error fetching user:", error);
+      }
+    },
+    async GET_USERS(data) {
+      const userStore = useUserStore();
+      try {
+        await userStore.GET_USERS({ page: data.page, perPage: data.perPage }).then((response) => {
+          this.usersList = response.data;
+        });
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      } finally {
+        this.loading = false;
       }
     },
   },

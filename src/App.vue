@@ -24,6 +24,7 @@ const promises = [
   commonStore.GET_Dictionarys({ name: "services" }),
   commonStore.GET_Dictionarys({ name: "theme" }),
   commonStore.GET_Dictionarys({ name: "login" }),
+  commonStore.GET_USERS({ page: 1, perPage: 100 }),
 ];
 
 Promise.all(promises).then(() => {

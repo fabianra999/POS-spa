@@ -47,5 +47,10 @@
   "customer": "Customer",
   "newCustomer": "New customer",
   "editCustomer": "Edit customer",
-  "deleteCustomer": "Delete customer"
+  "deleteCustomer": "Delete customer",
+  "invoicesTitle": "Invoice \nManagement",
+  "invoiceSubTitle": "On this page you can manage your invoices and view all their information.",
+  "invoice": "Invoice",
+  "newInvoice": "New invoice",
+  "editInvoice": "Edit bill"
 }

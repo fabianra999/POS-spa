@@ -1,13 +1,16 @@
-<!-- filename: ReportsView.vue -->
 <template>
-    <div>
-        <h1>Repo</h1>
-    </div>
+  <HeaderPagesCom
+    :title="$t('invoicesTitle')"
+    :subTitle="$t('invoiceSubTitle')"
+  />
+  <TableBilling />
 </template>
+    
+    <script setup>
+import { reactive, onMounted, ref, computed } from "vue";
 
-<script setup>
-
+onMounted(() => {});
 </script>
-
-<style lang="scss" scoped>
+    
+    <style lang="scss" scoped>
 </style>
