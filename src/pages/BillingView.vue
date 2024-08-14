@@ -53,7 +53,11 @@
             :label="$t('category')"
             :variant="st_input.variant"
             clearable
-            @update:modelValue="setCategory_fn(item)"
+            :error-messages="bill.services[index].category_ms"
+            @update:modelValue="
+              setCategory_fn(item);
+              fieldValidation('category');
+            "
           ></v-autocomplete>
         </v-col>
         <v-col>
@@ -69,12 +73,15 @@
             :label="$t('service')"
             :variant="st_input.variant"
             clearable
+            :error-messages="bill.services[index].service_ms"
             @update:modelValue="
               bill.services[index].suggestedValue = findByKey(
                 commonStore.services,
                 'id',
                 item.service
-              ).price
+              ).price;
+              fieldValidation('service');
+              fieldValidation('suggestedValue');
             "
           ></v-autocomplete>
         </v-col>
@@ -87,6 +94,8 @@
             :label="$t('collaborator')"
             :variant="st_input.variant"
             clearable
+            :error-messages="bill.services[index].collaborator_ms"
+            @update:modelValue="fieldValidation('collaborator')"
           ></v-autocomplete>
         </v-col>
         <v-col>
@@ -99,6 +108,8 @@
               :variant="st_input.variant"
               class="flex-grow-1"
               style="flex-basis: 80%"
+              :error-messages="bill.services[index].suggestedValue_ms"
+              @update:modelValue="fieldValidation('suggestedValue')"
             ></v-text-field>
             <v-btn
               color="error"
@@ -165,6 +176,12 @@
           :label="$t('typePayment')"
           :variant="st_input.variant"
           clearable
+          :error-messages="error_typePayment"
+          @update:modelValue="
+            bill.typePayment != null
+              ? (error_typePayment = '')
+              : (error_typePayment = 'Seleccione un método de pago')
+          "
         ></v-autocomplete>
       </v-col>
       <v-col>
@@ -173,8 +190,8 @@
           :color="st_button.color"
           :size="st_button.size"
           @click="billSave_fn"
-          :disabled="billTotal === 0"
         >
+          <!-- :disabled="billTotal === 0" -->
           {{ $t("btn-bill") }}
         </v-btn>
       </v-col>
@@ -203,25 +220,53 @@ const inventoryList = reactive([]);
 const billTotal = ref(0);
 const billMoney = ref(0);
 const billChange = ref(0);
-const bill = reactive({
+let bill = reactive({
   customer: null,
   total: billTotal,
   typePayment: null,
   cashier: commonStore.users.id,
   date: new Date(),
-  state: true,
+  state: false,
   services: [
     {
       id: 1,
       category: null,
+      category_ms: null,
       service: null,
+      service_ms: null,
       collaborator: null,
+      collaborator_ms: null,
       suggestedValue: null,
+      suggestedValue_ms: null,
     },
   ],
 });
+
+const billSet = {
+  customer: null,
+  total: billTotal,
+  typePayment: null,
+  cashier: commonStore.users.id,
+  date: new Date(),
+  state: false,
+  services: [
+    {
+      id: 1,
+      category: null,
+      category_ms: null,
+      service: null,
+      service_ms: null,
+      collaborator: null,
+      collaborator_ms: null,
+      suggestedValue: null,
+      suggestedValue_ms: null,
+    },
+  ],
+};
+
 const friends = ref(null);
 const isUpdating = ref(false);
+const error_typePayment = ref("");
 
 const { st_button, st_input } = storeToRefs(themeStore);
 
@@ -264,16 +309,91 @@ const billDelete_fn = (index) => {
   bill.services.splice(index, 1);
 };
 
-const billSave_fn = (index) => {
+const billSave_fn = () => {
   isUpdating.value = true;
-  // bill.total = billTotal
-  billingStore.CREATE_BILL(bill).then(() => {
-    isUpdating.value = false;
-  });
+  fieldsValidation();
+  validateBill();
+  // Actualizar Varible reactiva
+  Object.assign(bill, billSet);
+
+  console.log("test");
+
+  const dataFilter = removeMsKeys(bill);
+  dataFilter.date = new Date();
+  if (bill.state) {
+    billingStore.CREATE_BILL(dataFilter).then(() => {
+      isUpdating.value = false;
+    });
+  } else {
+    console.log("Validación incorrecta");
+  }
   isUpdating.value = false;
 };
 // Computed property
 
+const fieldsValidation = () => {
+  if (bill.typePayment === null) {
+    error_typePayment.value = "Seleccione un método de pago";
+  } else {
+    error_typePayment.value = "";
+  }
+  fieldValidation("category");
+  fieldValidation("service");
+  fieldValidation("collaborator");
+  fieldValidation("suggestedValue");
+};
+
+const fieldValidation = (data) => {
+  const ms = data.concat("_ms");
+  bill.services.forEach((item, index) => {
+    if (item[data] === null) {
+      item[ms] = "Campo requerido";
+    } else {
+      item[ms] = "";
+    }
+  });
+};
+
+const validateBill = (data) => {
+  let servicesData = false;
+  bill.services.forEach((item, index) => {
+    if (
+      item.category != null &&
+      item.collaborator != null &&
+      item.service != null &&
+      item.suggestedValue != null
+    ) {
+      servicesData = true;
+      return true;
+    }
+    servicesData = false;
+    return false;
+  });
+
+  if (bill.typePayment != null && servicesData) {
+    bill.state = true;
+  } else {
+    bill.state = false;
+  }
+};
+
+const removeMsKeys = (obj) => {
+  const newObj = { ...obj };
+  Object.keys(newObj).forEach((key) => {
+    if (key.endsWith("_ms")) {
+      delete newObj[key];
+    } else if (typeof newObj[key] === "object" && newObj[key] !== null) {
+      if (Array.isArray(newObj[key])) {
+        newObj[key] = newObj[key].map((item) =>
+          typeof item === "object" && item !== null ? removeMsKeys(item) : item
+        );
+      } else {
+        newObj[key] = removeMsKeys(newObj[key]);
+      }
+    }
+  });
+  return newObj;
+};
 // Observa cambios en services.category
 watch(
   bill,
