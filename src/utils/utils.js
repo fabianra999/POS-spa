@@ -18,5 +18,21 @@ export function capitalize(value) {
  * @returns {Object|null} - El objeto encontrado o null si no se encuentra.
  */
 export function findByKey(array, key, value) {
-    return array.find(obj => obj[key] === value) || null;
+  if (value === null || value === undefined) {
+    return [];
   }
+  return array.find((obj) => obj[key] === value) || null;
+}
+
+export function filterByKey(array, key, value) {
+  if (value === null || value === undefined) {
+    return array;
+  }
+  return array.filter((obj) => obj[key] === value) || new Proxy([], {});
+}
+
+export default {
+  capitalize,
+  findByKey,
+  filterByKey,
+};

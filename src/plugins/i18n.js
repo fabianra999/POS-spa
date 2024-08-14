@@ -32,6 +32,7 @@ const messages = {
         ok: "Confirmar Edición",
         cancel: "Cancelar",
       },
+       noDataText: 'No hay datos disponibles',
     },
   },
   en: {
@@ -61,6 +62,7 @@ const messages = {
         ok: "Confirm Edit",
         cancel: "Cancel",
       },
+      noDataText: 'No data available',
     },
   },
 };

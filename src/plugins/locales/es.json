@@ -30,6 +30,7 @@
   "btn-save": "Guardar",
   "btn-clear": "Limpiar",
   "btn-cancel": "Cancelar",
+  "btn-create": "Crear",
   "btn-Reset": "Reiniciar",
   "price": "Precio",
   "location": "Ubicación",
@@ -52,5 +53,14 @@
   "invoiceSubTitle": " En esta página podrás gestionar tus facturas y ver toda su información.",
   "invoice": "Facturas",
   "newInvoice": "Nueva factura",
-  "editInvoice": "Editar Factura"
+  "editInvoice": "Editar Factura",
+  "total": "Total",
+  "money": "Dinero",
+  "btn-bill": "Facturar",
+  "typePayment": "Tipo de pago",
+  "Category": "Categoría",
+  "service": "Servicio",
+  "collaborator": "Colaborador",
+  "suggestedValue": "valor sugerido",
+  "btn-newService": "Nuevo servicio"
 }

@@ -59,6 +59,7 @@
       "dateBirth": "1989-06-06",
       "country": "1",
       "city": "1",
+      "avatar": "https://cdn.vuetifyjs.com/images/lists/1.jpg",
       "state": true
     }
   ],
@@ -173,15 +174,27 @@
     {
       "id": "4",
       "name": "Pedicure"
+    },
+    {
+      "id": "5",
+      "name": "Productos"
     }
   ],
   "services": [
     {
       "id": "1",
-      "name": "Servicio 1",
+      "name": "Corte Hombre",
       "price": 10,
       "duration": 60,
-      "category": "3",
+      "category": "1",
+      "state": true
+    },
+    {
+      "id": "2",
+      "name": "Corte Mujer",
+      "price": 11,
+      "duration": 60,
+      "category": "1",
       "state": true
     }
   ],
@@ -195,6 +208,31 @@
       "total": 10,
       "date": "2022-10-10",
       "state": true
+    },
+    {
+      "id": "5a95",
+      "customer": null,
+      "total": 20,
+      "typePayment": "1",
+      "cashier": "3",
+      "date": "2024-08-14T03:11:28.293Z",
+      "state": true,
+      "services": [
+        {
+          "id": 1,
+          "category": "1",
+          "service": "1",
+          "collaborator": "3",
+          "suggestedValue": 10
+        },
+        {
+          "id": 2,
+          "category": "5",
+          "service": "1",
+          "collaborator": "3",
+          "suggestedValue": 10
+        }
+      ]
     }
   ],
   "theme": {

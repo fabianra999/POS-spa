@@ -4,25 +4,7 @@ import axiosInstance from "../assets/utils/axiosInstance";
 export const useServicesSoldStore = defineStore("servicesSold", {
   // state
   state: () => ({
-    servicesSold: [
-      {
-        id: 1,
-        serviceProvider: "Service Provider 1",
-        date: "2021-01-01",
-        totalSale: 100,
-        numberServices: 1,
-        customer: "Customer 1",
-        services: [
-          {
-            id: 1,
-            name: "Service 1",
-            price: 100,
-            quantity: 1,
-            location: "A1",
-          },
-        ],
-      },
-    ],
+    servicesSold: [],
   }),
   // getters
   getters: {},

@@ -52,5 +52,16 @@
   "invoiceSubTitle": "On this page you can manage your invoices and view all their information.",
   "invoice": "Invoice",
   "newInvoice": "New invoice",
-  "editInvoice": "Edit bill"
+  "editInvoice": "Edit bill",
+  "total": "Total",
+  "money": "Money",
+  "change": "Change",
+  "btn-bill": "Bill",
+  "typePayment": "Type of payment",
+  "btn-create": "Create",
+  "Category": "Category",
+  "service": "Service",
+  "collaborator": "Collaborator",
+  "suggestedValue": "Suggested value",
+  "btn-newService": "New service"
 }
