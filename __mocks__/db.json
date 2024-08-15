@@ -345,5 +345,25 @@
         }
       ]
     }
+  ],
+  "pages":[
+    {
+      "state": true,
+      "icon": "mdi-clock",
+      "url": "Login",
+      "name": "Login"
+    },
+    {
+      "state": true,
+      "icon": "mdi-clock",
+      "url": "Agenda",
+      "name": "Agenda"
+    },
+    {
+      "state": true,
+      "icon": "mdi-clock",
+      "url": "Home",
+      "name": "Inicio"
+    }
   ]
 }

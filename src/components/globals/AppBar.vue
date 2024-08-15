@@ -2,13 +2,11 @@
 <template>
   <v-app-bar color="primary" prominent>
     <v-app-bar-nav-icon
-      v-if="adminOptions"
       variant="text"
       @click.stop="drawer = !drawer"
     ></v-app-bar-nav-icon>
 
     <v-toolbar-title>My files</v-toolbar-title>
-
     <v-spacer></v-spacer>
 
     <template v-if="$vuetify.display.mdAndUp"> </template>
@@ -94,34 +92,35 @@
 <script>
 import { reactive, ref, onMounted } from "vue";
 import { useCommonStore } from "@/stores/common";
-
 const commonStore = useCommonStore();
+
 
 export default {
   setup() {
-    const items = ref("");
+    const items = ref([]);
     const drawer = ref(false);
     const group = ref(null);
-    const adminOptions = ref(false);
 
     const fav = ref(true);
     const menu = ref(false);
     const message = ref(false);
     const hints = ref(true);
 
+    watch(
+      () => commonStore.pages_gt,
+      (newValue, oldValue) => {
+        items.value = [...commonStore.pages_gt];
+      }
+    );
+
     watch(group, (newValue, oldValue) => {
       drawer.value = false;
     });
-    onMounted(() => {
-      adminOptions.value =
-        commonStore.permissions.name === "admin" ? true : false;
-      items.value = [...commonStore.permissions.routes];
-    });
+    onMounted(() => {});
     return {
       items,
       drawer,
       group,
-      adminOptions,
 
       fav,
       menu,
@@ -132,5 +131,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

@@ -20,10 +20,15 @@ export const useCommonStore = defineStore("common", {
     theme: [],
     login: [],
     permissions: [],
+    pages: [],
     loading: false,
   }),
   // getters
-  getters: {},
+  getters: {
+    pages_gt: (state) =>{
+      return state.pages.filter((page) => page.state === true);
+    }
+  },
   // actions
   actions: {
     async GET_Dictionarys(dictionary) {

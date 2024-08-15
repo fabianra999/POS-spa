@@ -3,21 +3,24 @@
   <v-navigation-drawer expand-on-hover rail>
     <v-list>
       <v-list-item
-        :prepend-avatar="user.img"
-        :title="user.name"
-        :subtitle="user.email"
+        :prepend-avatar="commonStore.users.img"
+        :title="commonStore.users.name + ' ' + commonStore.users.lastName"
+        :subtitle="commonStore.users.email"
       ></v-list-item>
     </v-list>
 
     <v-divider></v-divider>
-
     <v-list density="compact" nav>
       <v-list-item
-        prepend-icon="mdi-folder"
-        title="Tablero"
-        value="myfiles"
+        v-for="(item, i) in commonStore.permissions.routes"
+        :key="i"
+        :prepend-icon="item.icon"
+        :title="item.name"
+        :value="item.url"
+        :to="item.url"
+        color="primary"
       ></v-list-item>
-      <v-list-item
+      <!-- <v-list-item
         prepend-icon="mdi-folder"
         title="Datos personales"
         value="myfiles"
@@ -36,7 +39,7 @@
         prepend-icon="mdi-star"
         title="Descansos"
         value="starred"
-      ></v-list-item>
+      ></v-list-item> -->
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -47,20 +50,7 @@ import { useCommonStore } from "@/stores/common";
 
 const commonStore = useCommonStore();
 
-const nameLogin = ref("");
-
-const user = reactive({
-  name: "",
-  email: "",
-  img: "",
-});
-
-onMounted(() => {
-  user.name = commonStore.users.name + " " + commonStore.users.lastName;
-  user.email = commonStore.users.email;
-  user.img = commonStore.users.img;
-});
+onMounted(() => {});
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

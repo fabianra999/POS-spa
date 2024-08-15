@@ -14,6 +14,7 @@ const messages = {
     },
     $vuetify: {
       open: "Abrir",
+      close: "Cerrar",
       dataFooter: {
         itemsPerPageText: "Elementos por página",
         itemsPerPageAll: "Todos",
@@ -32,8 +33,15 @@ const messages = {
         ok: "Confirmar Edición",
         cancel: "Cancelar",
       },
-       noDataText: 'No hay datos disponibles',
+      input: {
+        clear: "Limpiar",
+      },
+      message: {
+        change: "cambiar",
+      },
+      noDataText: "No hay datos disponibles",
     },
+    change: "cambiar",
   },
   en: {
     ...enLocales,
@@ -44,6 +52,7 @@ const messages = {
     },
     $vuetify: {
       open: "Open",
+      close: "Close",
       dataFooter: {
         itemsPerPageText: "Items per page:",
         itemsPerPageAll: "All",
@@ -62,8 +71,15 @@ const messages = {
         ok: "Confirm Edit",
         cancel: "Cancel",
       },
-      noDataText: 'No data available',
+      input: {
+        clear: "Clear",
+      },
+      message: {
+        change: "Change",
+      },
+      noDataText: "No data available",
     },
+    change: "Change",
   },
 };
 
