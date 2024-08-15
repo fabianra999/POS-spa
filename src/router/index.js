@@ -8,13 +8,15 @@
 import { createRouter, createWebHistory } from 'vue-router/auto'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { routes } from 'vue-router/auto-routes'
+import Login from '../pages/Login.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: setupLayouts(routes),
 })
-// console.log(routes);
-// console.log(setupLayouts);
+console.log(routes);
+console.log(setupLayouts);
 
 // Workaround for https://github.com/vitejs/vite/issues/11804
 router.onError((err, to) => {
@@ -35,4 +37,14 @@ router.isReady().then(() => {
   localStorage.removeItem('vuetify:dynamic-reload')
 })
 
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  const isAuthenticated = !!localStorage.getItem('authToken');
+
+  if (requiresAuth && !isAuthenticated) {
+    next('/Login');
+  } else {
+    next();
+  }
+});
 export default router

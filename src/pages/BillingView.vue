@@ -198,7 +198,11 @@
     </v-row>
   </v-container>
 </template>
-
+<route lang="yaml">
+  meta:
+    layout: default
+    requiresAuth: true
+  </route>
 <script setup>
 import { ref, reactive, watch } from "vue";
 import { storeToRefs } from "pinia";
