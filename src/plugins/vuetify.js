@@ -20,9 +20,114 @@ import { createVuetify } from "vuetify";
 import { VDateInput } from "vuetify/labs/VDateInput";
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
+
+
+
+const appTheme = {
+  dark: false,
+  colors: {
+    background: '#FFFFFF',
+    surface: '#FFFFFF',
+    'surface-bright': '#FFFFFF',
+    'surface-light': '#EEEEEE',
+    'surface-variant': '#424242',
+    'on-surface-variant': '#EEEEEE',
+    primary: '#1867C0',
+    'primary-darken-1': '#1F5592',
+    secondary: '#48A9A6',
+    'secondary-darken-1': '#018786',
+    error: '#B00020',
+    info: '#2196F3',
+    success: '#4CAF50',
+    warning: '#FB8C00',
+    
+    navBar: "#465F7D",
+    sidebar: "#ADBACA",
+    footer: "#D9E9FD",
+    title: "#465F7D",
+    text: "#6B737D",
+    iconHeader: "#8CC0FF",
+    
+    autocomplete: '#F5F5F5',
+
+  },
+  variables: {
+    'border-color': '#000000',
+    'border-opacity': 0.12,
+    'high-emphasis-opacity': 0.87,
+    'medium-emphasis-opacity': 0.60,
+    'disabled-opacity': 0.38,
+    'idle-opacity': 0.04,
+    'hover-opacity': 0.04,
+    'focus-opacity': 0.12,
+    'selected-opacity': 0.08,
+    'activated-opacity': 0.12,
+    'pressed-opacity': 0.12,
+    'dragged-opacity': 0.08,
+    'theme-kbd': '#212529',
+    'theme-on-kbd': '#FFFFFF',
+    'theme-code': '#F5F5F5',
+    'theme-on-code': '#000000',
+
+    titleFontWeight: "300",
+    iconHeaderSize: "20em",
+    textSize: "1.2em",
+
+  
+
+    autocomple:{
+      variant: "underlined",
+      color: "#605e5c",
+      bgColor: "",
+      baseColor: "#605e5c",
+      clearable: true,
+      chips: false,
+    },
+    textField:{
+      variant: "underlined",
+      color: "#605e5c",
+      bgColor: "",
+      baseColor: "#605e5c",
+      clearable: false,
+    },
+    buttonField:{
+      variant: "underlined",
+      size: "small",
+      rounded: "0",
+      color: "#605e5c",
+    }
+  },
+};
+const customDarkTheme = {
+  dark: true,
+  colors: {
+    background: "#15202b",
+    surface: "#15202b",
+    primary: "#3f51b5",
+    secondary: "#03dac6",
+    error: "#ff5722",
+  },
+};
+
+const customLightTheme = {
+  dark: false,
+  colors: {
+    background: "#eee",
+    surface: "#15202b",
+    primary: "#3f51b5",
+    secondary: "#00ccff",
+    error: "#ffcc00",
+  },
+};
+
 export default createVuetify({
   theme: {
-    // defaultTheme: 'dark',
+    defaultTheme: "appTheme",
+    themes: {
+      appTheme,
+      customDarkTheme,
+      customLightTheme,
+    },
   },
   locale: {
     adapter: createVueI18nAdapter({ i18n, useI18n }),

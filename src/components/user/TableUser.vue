@@ -27,8 +27,10 @@
             <v-btn
               prepend-icon="$vuetify"
               v-bind="props"
-              :color="st_button.color"
-              :variant="st_button.variant"
+              :variant="buttonField.variant"
+              :size="buttonField.size"
+              :rounded="buttonField.rounded"
+              :color="buttonField.color"
             >
               {{ $t("newUser") }}
             </v-btn>
@@ -50,7 +52,11 @@
                         :error-messages="
                           getErrorMessage(v$.editedItemUser.name.$errors)
                         "
-                        :variant="st_input.variant"
+                        :variant="textField.variant"
+                        :color="textField.color"
+                        :bg-color="textField.bgColor"
+                        :base-color="textField.baseColor"
+                        :clearable="textField.clearable"
                         @blur="v$.editedItemUser.name.$touch"
                         @input="v$.editedItemUser.name.$touch"
                       ></v-text-field>
@@ -64,7 +70,11 @@
                         :error-messages="
                           getErrorMessage(v$.editedItemUser.lastName.$errors)
                         "
-                        :variant="st_input.variant"
+                        :variant="textField.variant"
+                        :color="textField.color"
+                        :bg-color="textField.bgColor"
+                        :base-color="textField.baseColor"
+                        :clearable="textField.clearable"
                         @blur="v$.editedItemUser.lastName.$touch"
                         @input="v$.editedItemUser.lastName.$touch"
                       ></v-text-field>
@@ -78,7 +88,11 @@
                         :error-messages="
                           getErrorMessage(v$.editedItemUser.email.$errors)
                         "
-                        :variant="st_input.variant"
+                        :variant="textField.variant"
+                        :color="textField.color"
+                        :bg-color="textField.bgColor"
+                        :base-color="textField.baseColor"
+                        :clearable="textField.clearable"
                         @blur="v$.editedItemUser.email.$touch"
                         @input="v$.editedItemUser.email.$touch"
                       ></v-text-field>
@@ -96,7 +110,12 @@
                             v$.editedItemUser.documentIdType.$errors
                           )
                         "
-                        :variant="st_input.variant"
+                        :clearable="autocomplete.clearable"
+                        :variant="autocomplete.variant"
+                        :chips="autocomplete.chips"
+                        :base-color="autocomplete.baseColor"
+                        :bg-color="autocomplete.bgColor"
+                        :color="autocomplete.color"
                         @blur="v$.editedItemUser.documentIdType.$touch"
                         @input="v$.editedItemUser.documentIdType.$touch"
                       ></v-autocomplete>
@@ -109,7 +128,11 @@
                         :error-messages="
                           getErrorMessage(v$.editedItemUser.documentId.$errors)
                         "
-                        :variant="st_input.variant"
+                        :variant="textField.variant"
+                        :color="textField.color"
+                        :bg-color="textField.bgColor"
+                        :base-color="textField.baseColor"
+                        :clearable="textField.clearable"
                         @blur="v$.editedItemUser.documentId.$touch"
                         @input="v$.editedItemUser.documentId.$touch"
                       ></v-text-field>
@@ -123,7 +146,7 @@
                         :error-messages="
                           getErrorMessage(v$.editedItemUser.dateBirth.$errors)
                         "
-                        :variant="st_input.variant"
+                        :variant="textField.variant"
                         @blur="v$.editedItemUser.dateBirth.$touch"
                         @input="v$.editedItemUser.dateBirth.$touch"
                       ></v-date-input>
@@ -139,7 +162,12 @@
                         :error-messages="
                           getErrorMessage(v$.editedItemUser.role.$errors)
                         "
-                        :variant="st_input.variant"
+                        :clearable="autocomplete.clearable"
+                        :variant="autocomplete.variant"
+                        :chips="autocomplete.chips"
+                        :base-color="autocomplete.baseColor"
+                        :bg-color="autocomplete.bgColor"
+                        :color="autocomplete.color"
                         @blur="v$.editedItemUser.role.$touch"
                         @input="v$.editedItemUser.role.$touch"
                       ></v-autocomplete>
@@ -152,7 +180,11 @@
                         :error-messages="
                           getErrorMessage(v$.editedItemUser.password.$errors)
                         "
-                        :variant="st_input.variant"
+                        :variant="textField.variant"
+                        :color="textField.color"
+                        :bg-color="textField.bgColor"
+                        :base-color="textField.baseColor"
+                        :clearable="textField.clearable"
                         @blur="v$.editedItemUser.password.$touch"
                         @input="v$.editedItemUser.password.$touch"
                       ></v-text-field>
@@ -168,7 +200,12 @@
                         :error-messages="
                           getErrorMessage(v$.editedItemUser.country.$errors)
                         "
-                        :variant="st_input.variant"
+                        :clearable="autocomplete.clearable"
+                        :variant="autocomplete.variant"
+                        :chips="autocomplete.chips"
+                        :base-color="autocomplete.baseColor"
+                        :bg-color="autocomplete.bgColor"
+                        :color="autocomplete.color"
                         @blur="v$.editedItemUser.country.$touch"
                         @input="v$.editedItemUser.country.$touch"
                       ></v-autocomplete>
@@ -184,7 +221,12 @@
                         :error-messages="
                           getErrorMessage(v$.editedItemUser.city.$errors)
                         "
-                        :variant="st_input.variant"
+                        :clearable="autocomplete.clearable"
+                        :variant="autocomplete.variant"
+                        :chips="autocomplete.chips"
+                        :base-color="autocomplete.baseColor"
+                        :bg-color="autocomplete.bgColor"
+                        :color="autocomplete.color"
                         @blur="v$.editedItemUser.city.$touch"
                         @input="v$.editedItemUser.city.$touch"
                       ></v-autocomplete>
@@ -197,7 +239,7 @@
                         :error-messages="
                           getErrorMessage(v$.editedItemUser.state.$errors)
                         "
-                        :variant="st_input.variant"
+                        :variant="buttonField.variant"
                         @blur="v$.editedItemUser.state.$touch"
                         @input="v$.editedItemUser.state.$touch"
                       ></v-checkbox>
@@ -210,18 +252,20 @@
               <v-spacer></v-spacer>
 
               <v-btn
-                :variant="st_button.variant"
-                :color="st_button.color"
-                :size="st_button.size"
+                :variant="buttonField.variant"
+                :size="buttonField.size"
+                :rounded="buttonField.rounded"
+                :color="buttonField.color"
                 @click="close"
               >
                 {{ $t("btn-cancel") }}
               </v-btn>
 
               <v-btn
-                :variant="st_button.variant"
-                :color="st_button.color"
-                :size="st_button.size"
+                :variant="buttonField.variant"
+                :size="buttonField.size"
+                :rounded="buttonField.rounded"
+                :color="buttonField.color"
                 @click="save"
               >
                 {{ $t("btn-save") }}
@@ -240,17 +284,19 @@
             <v-card-actions class="">
               <v-spacer></v-spacer>
               <v-btn
-                :variant="st_button.variant"
-                :color="st_button.color"
-                :size="st_button.size"
+                :variant="buttonField.variant"
+                :size="buttonField.size"
+                :rounded="buttonField.rounded"
+                :color="buttonField.color"
                 @click="closeDelete"
               >
                 {{ $t("btn-cancel") }}
               </v-btn>
               <v-btn
-                :variant="st_button.variant"
-                :color="st_button.color"
-                :size="st_button.size"
+                :variant="buttonField.variant"
+                :size="buttonField.size"
+                :rounded="buttonField.rounded"
+                :color="buttonField.color"
                 @click="deleteItemConfirm"
               >
                 {{ $t("btn-save") }}
@@ -313,9 +359,8 @@ import { useUserStore } from "@/stores/user";
 import { useCommonStore } from "@/stores/common";
 
 import { storeToRefs } from "pinia";
-import { usethemeStore } from "@/stores/theme";
 
-const themeStore = usethemeStore();
+import { useTheme } from "vuetify";
 
 const userStore = useUserStore();
 const commonStore = useCommonStore();
@@ -332,7 +377,7 @@ export default {
     const listCountry = commonStore.country;
     const listCity = commonStore.city;
 
-    const { st_button, st_input } = storeToRefs(themeStore);
+    const theme = useTheme();
 
     return {
       v$: useVuelidate(),
@@ -341,8 +386,7 @@ export default {
       listRole,
       listCountry,
       listCity,
-      st_button,
-      st_input,
+      theme,
     };
   },
   data: () => ({
@@ -395,6 +439,9 @@ export default {
       city: null,
       state: false,
     },
+    autocomplete: {},
+    textField: {},
+    buttonField: {},
   }),
 
   validations() {
@@ -431,6 +478,9 @@ export default {
 
   created() {
     // this.initialize();
+    this.autocomplete = this.theme.global.current.value.variables.autocomple;
+    this.textField = this.theme.global.current.value.variables.textField;
+    this.buttonField = this.theme.global.current.value.variables.buttonField;
   },
 
   methods: {

@@ -27,8 +27,10 @@
             <v-btn
               prepend-icon="$vuetify"
               v-bind="props"
-              :color="st_button.color"
-              :variant="st_button.variant"
+              :variant="buttonField.variant"
+        :size="buttonField.size"
+        :rounded="buttonField.rounded"
+        :color="buttonField.color"
             >
               {{ $t("inventaryNew") }}
             </v-btn>
@@ -50,7 +52,11 @@
                         :error-messages="
                           getErrorMessage(v$.editedItem.name.$errors)
                         "
-                        :variant="st_input.variant"
+                       :variant="textField.variant"
+                        :color="textField.color"
+                        :bg-color="textField.bgColor"
+                        :base-color="textField.baseColor"
+                        :clearable="textField.clearable"
                         @blur="v$.editedItem.name.$touch"
                         @input="v$.editedItem.name.$touch"
                       ></v-text-field>
@@ -66,7 +72,12 @@
                         :error-messages="
                           getErrorMessage(v$.editedItem.category.$errors)
                         "
-                        :variant="st_input.variant"
+                        :clearable="autocomplete.clearable"
+                        :variant="autocomplete.variant"
+                        :chips="autocomplete.chips"
+                        :base-color="autocomplete.baseColor"
+                        :bg-color="autocomplete.bgColor"
+                        :color="autocomplete.color"
                         @blur="v$.editedItem.category.$touch"
                         @input="v$.editedItem.category.$touch"
                       ></v-autocomplete>
@@ -79,7 +90,11 @@
                         :error-messages="
                           getErrorMessage(v$.editedItem.duration.$errors)
                         "
-                        :variant="st_input.variant"
+                        :variant="textField.variant"
+                        :color="textField.color"
+                        :bg-color="textField.bgColor"
+                        :base-color="textField.baseColor"
+                        :clearable="textField.clearable"
                         @blur="v$.editedItem.duration.$touch"
                         @input="v$.editedItem.duration.$touch"
                       ></v-text-field>
@@ -94,7 +109,11 @@
                         :error-messages="
                           getErrorMessage(v$.editedItem.price.$errors)
                         "
-                        :variant="st_input.variant"
+                        :variant="textField.variant"
+                        :color="textField.color"
+                        :bg-color="textField.bgColor"
+                        :base-color="textField.baseColor"
+                        :clearable="textField.clearable"
                         @blur="v$.editedItem.price.$touch"
                         @input="v$.editedItem.price.$touch"
                       ></v-text-field>
@@ -107,7 +126,6 @@
                         :error-messages="
                           getErrorMessage(v$.editedItem.state.$errors)
                         "
-                        :variant="st_input.variant"
                         @blur="v$.editedItem.state.$touch"
                         @input="v$.editedItem.state.$touch"
                       ></v-checkbox>
@@ -120,18 +138,20 @@
               <v-spacer></v-spacer>
 
               <v-btn
-                :variant="st_button.variant"
-                :color="st_button.color"
-                :size="st_button.size"
+              :variant="buttonField.variant"
+        :size="buttonField.size"
+        :rounded="buttonField.rounded"
+        :color="buttonField.color"
                 @click="close"
               >
                 {{ $t("btn-cancel") }}
               </v-btn>
 
               <v-btn
-                :variant="st_button.variant"
-                :color="st_button.color"
-                :size="st_button.size"
+              :variant="buttonField.variant"
+        :size="buttonField.size"
+        :rounded="buttonField.rounded"
+        :color="buttonField.color"
                 @click="save"
               >
                 {{ $t("btn-save") }}
@@ -150,17 +170,19 @@
             <v-card-actions class="">
               <v-spacer></v-spacer>
               <v-btn
-                :variant="st_button.variant"
-                :color="st_button.color"
-                :size="st_button.size"
+              :variant="buttonField.variant"
+        :size="buttonField.size"
+        :rounded="buttonField.rounded"
+        :color="buttonField.color"
                 @click="closeDelete"
               >
                 {{ $t("btn-cancel") }}
               </v-btn>
               <v-btn
-                :variant="st_button.variant"
-                :color="st_button.color"
-                :size="st_button.size"
+              :variant="buttonField.variant"
+        :size="buttonField.size"
+        :rounded="buttonField.rounded"
+        :color="buttonField.color"
                 @click="deleteItemConfirm"
               >
                 {{ $t("btn-save") }}
@@ -222,9 +244,8 @@ import { email, required } from "@vuelidate/validators";
 
 import { useCommonStore } from "@/stores/common";
 import { useServicesSoldStore } from "@/stores/services";
-import { usethemeStore } from "@/stores/theme";
+import { useTheme } from "vuetify";
 
-const themeStore = usethemeStore();
 
 const servicesSoldStore = useServicesSoldStore();
 const commonStore = useCommonStore();
@@ -238,14 +259,12 @@ export default {
 
     const listCategories = commonStore.categories;
 
-    const { st_button, st_input } = storeToRefs(themeStore);
-
+    const theme = useTheme();
     return {
       v$: useVuelidate(),
       t,
       listCategories,
-      st_button,
-      st_input,
+      theme,
     };
   },
   data: () => ({
@@ -285,6 +304,9 @@ export default {
       price: null,
       state: false,
     },
+    autocomplete: {},
+    textField: {},
+    buttonField: {},
   }),
 
   validations() {
@@ -317,6 +339,9 @@ export default {
 
   created() {
     // this.initialize();
+    this.autocomplete = this.theme.global.current.value.variables.autocomple;
+    this.textField = this.theme.global.current.value.variables.textField;
+    this.buttonField = this.theme.global.current.value.variables.buttonField;
   },
 
   methods: {

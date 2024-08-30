@@ -22,10 +22,12 @@
         <v-dialog v-model="dialog" max-width="80vw">
           <template v-slot:activator="{ props }">
             <v-btn
+              :variant="buttonField.variant"
+              :size="buttonField.size"
+              :rounded="buttonField.rounded"
+              :color="buttonField.color"
               prepend-icon="$vuetify"
               v-bind="props"
-              :color="st_button.color"
-              :variant="st_button.variant"
             >
               {{ $t("newCustomer") }}
             </v-btn>
@@ -44,16 +46,25 @@
                         :label="$t('name')"
                         :counter="10"
                         required
+                        :variant="textField.variant"
+                        :color="textField.color"
+                        :bg-color="textField.bgColor"
+                        :base-color="textField.baseColor"
+                        :clearable="textField.clearable"
                         :error-messages="
                           getErrorMessage(v$.editedItem.name.$errors)
                         "
-                        :variant="st_input.variant"
                         @blur="v$.editedItem.name.$touch"
                         @input="v$.editedItem.name.$touch"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
+                        :variant="textField.variant"
+                        :color="textField.color"
+                        :bg-color="textField.bgColor"
+                        :base-color="textField.baseColor"
+                        :clearable="textField.clearable"
                         v-model="editedItem.lastName"
                         :label="$t('lastName')"
                         :counter="10"
@@ -61,7 +72,6 @@
                         :error-messages="
                           getErrorMessage(v$.editedItem.lastName.$errors)
                         "
-                        :variant="st_input.variant"
                         @blur="v$.editedItem.lastName.$touch"
                         @input="v$.editedItem.lastName.$touch"
                       ></v-text-field>
@@ -69,12 +79,16 @@
 
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
+                        :variant="textField.variant"
+                        :color="textField.color"
+                        :bg-color="textField.bgColor"
+                        :base-color="textField.baseColor"
+                        :clearable="textField.clearable"
                         v-model="editedItem.email"
                         :label="$t('email')"
                         :error-messages="
                           getErrorMessage(v$.editedItem.email.$errors)
                         "
-                        :variant="st_input.variant"
                         @blur="v$.editedItem.email.$touch"
                         @input="v$.editedItem.email.$touch"
                       ></v-text-field>
@@ -86,12 +100,15 @@
                         :items="listdocumentIdType"
                         item-title="name"
                         item-value="id"
+                        :clearable="autocomplete.clearable"
+                        :variant="autocomplete.variant"
+                        :chips="autocomplete.chips"
+                        :base-color="autocomplete.baseColor"
+                        :bg-color="autocomplete.bgColor"
+                        :color="autocomplete.color"
                         :error-messages="
-                          getErrorMessage(
-                            v$.editedItem.documentIdType.$errors
-                          )
+                          getErrorMessage(v$.editedItem.documentIdType.$errors)
                         "
-                        :variant="st_input.variant"
                         @blur="v$.editedItem.documentIdType.$touch"
                         @input="v$.editedItem.documentIdType.$touch"
                       ></v-autocomplete>
@@ -100,10 +117,14 @@
                       <v-text-field
                         v-model.number="editedItem.documentId"
                         :label="$t('documentIdType')"
+                        :variant="textField.variant"
+                        :color="textField.color"
+                        :bg-color="textField.bgColor"
+                        :base-color="textField.baseColor"
+                        :clearable="textField.clearable"
                         :error-messages="
                           getErrorMessage(v$.editedItem.documentId.$errors)
                         "
-                        :variant="st_input.variant"
                         @blur="v$.editedItem.documentId.$touch"
                         @input="v$.editedItem.documentId.$touch"
                       ></v-text-field>
@@ -116,7 +137,6 @@
                         :error-messages="
                           getErrorMessage(v$.editedItem.dateBirth.$errors)
                         "
-                        :variant="st_input.variant"
                         @blur="v$.editedItem.dateBirth.$touch"
                         @input="v$.editedItem.dateBirth.$touch"
                       ></v-date-input>
@@ -128,10 +148,15 @@
                         :items="listCountry"
                         item-title="name"
                         item-value="id"
+                        :clearable="autocomplete.clearable"
+                        :variant="autocomplete.variant"
+                        :chips="autocomplete.chips"
+                        :base-color="autocomplete.baseColor"
+                        :bg-color="autocomplete.bgColor"
+                        :color="autocomplete.color"
                         :error-messages="
                           getErrorMessage(v$.editedItem.country.$errors)
                         "
-                        :variant="st_input.variant"
                         @blur="v$.editedItem.country.$touch"
                         @input="v$.editedItem.country.$touch"
                       ></v-autocomplete>
@@ -143,10 +168,15 @@
                         :items="listCity"
                         item-title="name"
                         item-value="id"
+                        :clearable="autocomplete.clearable"
+                        :variant="autocomplete.variant"
+                        :chips="autocomplete.chips"
+                        :base-color="autocomplete.baseColor"
+                        :bg-color="autocomplete.bgColor"
+                        :color="autocomplete.color"
                         :error-messages="
                           getErrorMessage(v$.editedItem.city.$errors)
                         "
-                        :variant="st_input.variant"
                         @blur="v$.editedItem.city.$touch"
                         @input="v$.editedItem.city.$touch"
                       ></v-autocomplete>
@@ -159,7 +189,6 @@
                         :error-messages="
                           getErrorMessage(v$.editedItem.state.$errors)
                         "
-                        :variant="st_input.variant"
                         @blur="v$.editedItem.state.$touch"
                         @input="v$.editedItem.state.$touch"
                       ></v-checkbox>
@@ -172,18 +201,20 @@
               <v-spacer></v-spacer>
 
               <v-btn
-                :variant="st_button.variant"
-                :color="st_button.color"
-                :size="st_button.size"
+                :variant="buttonField.variant"
+                :size="buttonField.size"
+                :rounded="buttonField.rounded"
+                :color="buttonField.color"
                 @click="close"
               >
                 {{ $t("btn-cancel") }}
               </v-btn>
 
               <v-btn
-                :variant="st_button.variant"
-                :color="st_button.color"
-                :size="st_button.size"
+                :variant="buttonField.variant"
+                :size="buttonField.size"
+                :rounded="buttonField.rounded"
+                :color="buttonField.color"
                 @click="save"
               >
                 {{ $t("btn-save") }}
@@ -202,17 +233,19 @@
             <v-card-actions class="">
               <v-spacer></v-spacer>
               <v-btn
-                :variant="st_button.variant"
-                :color="st_button.color"
-                :size="st_button.size"
+                :variant="buttonField.variant"
+                :size="buttonField.size"
+                :rounded="buttonField.rounded"
+                :color="buttonField.color"
                 @click="closeDelete"
               >
                 {{ $t("btn-cancel") }}
               </v-btn>
               <v-btn
-                :variant="st_button.variant"
-                :color="st_button.color"
-                :size="st_button.size"
+                :variant="buttonField.variant"
+                :size="buttonField.size"
+                :rounded="buttonField.rounded"
+                :color="buttonField.color"
                 @click="deleteItemConfirm"
               >
                 {{ $t("btn-save") }}
@@ -232,7 +265,15 @@
     </template>
 
     <template v-slot:no-data>
-      <v-btn color="primary" @click="initialize"> {{ $t("btn-Reset") }} </v-btn>
+      <v-btn
+        :variant="buttonField.variant"
+        :size="buttonField.size"
+        :rounded="buttonField.rounded"
+        :color="buttonField.color"
+        @click="initialize"
+      >
+        {{ $t("btn-Reset") }}
+      </v-btn>
     </template>
 
     <template v-slot:expanded-row="{ columns, item }">
@@ -274,10 +315,7 @@ import { useI18n } from "vue-i18n";
 import { useCustomerStore } from "@/stores/customer";
 import { useCommonStore } from "@/stores/common";
 
-import { storeToRefs } from "pinia";
-import { usethemeStore } from "@/stores/theme";
-
-const themeStore = usethemeStore();
+import { useTheme } from "vuetify";
 
 const customerStore = useCustomerStore();
 const commonStore = useCommonStore();
@@ -294,8 +332,8 @@ export default {
     const listCountry = commonStore.country;
     const listCity = commonStore.city;
 
-    const { st_button, st_input } = storeToRefs(themeStore);
-
+    const theme = useTheme();
+    
     return {
       v$: useVuelidate(),
       t,
@@ -303,8 +341,7 @@ export default {
       listRole,
       listCountry,
       listCity,
-      st_button,
-      st_input,
+      theme,
     };
   },
   data: () => ({
@@ -351,6 +388,9 @@ export default {
       city: "",
       state: true,
     },
+    autocomplete: {},
+    textField: {},
+    buttonField: {},
   }),
 
   validations() {
@@ -370,7 +410,9 @@ export default {
   },
   computed: {
     formTitle() {
-      return this.editedIndex === -1 ? this.t("newCustomer") : this.t("editCustomer");
+      return this.editedIndex === -1
+        ? this.t("newCustomer")
+        : this.t("editCustomer");
     },
   },
 
@@ -385,14 +427,19 @@ export default {
 
   created() {
     // this.initialize();
+    this.autocomplete = this.theme.global.current.value.variables.autocomple;
+    this.textField = this.theme.global.current.value.variables.textField;
+    this.buttonField = this.theme.global.current.value.variables.buttonField;
   },
 
   methods: {
     initialize({ page, itemsPerPage, sortBy }) {
-      customerStore.GET_CUSTOMERS({ page: page, perPage: itemsPerPage }).then(() => {
-        this.desserts = customerStore.customers.data;
-        this.totalItems = customerStore.customers.items;
-      });
+      customerStore
+        .GET_CUSTOMERS({ page: page, perPage: itemsPerPage })
+        .then(() => {
+          this.desserts = customerStore.customers.data;
+          this.totalItems = customerStore.customers.items;
+        });
     },
 
     editItem(item) {

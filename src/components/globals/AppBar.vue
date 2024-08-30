@@ -1,6 +1,6 @@
 <!-- filename: HeaderCom.vue -->
 <template>
-  <v-app-bar color="primary" prominent>
+  <v-app-bar color="navBar" prominent>
     <v-app-bar-nav-icon
       variant="text"
       @click.stop="drawer = !drawer"
@@ -17,19 +17,17 @@
 
       <v-card min-width="300">
         <v-list>
-          <v-list-item
-            prepend-avatar="https://cdn.vuetifyjs.com/images/john.jpg"
-            subtitle="Founder of Vuetify"
-            title="John Leider"
-          >
-            <template v-slot:append>
-              <v-btn
-                :class="fav ? 'text-red' : ''"
-                icon="mdi-heart"
-                variant="text"
-                @click="fav = !fav"
-              ></v-btn>
+          <v-list-item>
+            <template v-slot:prepend>
+              <v-icon icon="md:contrast"></v-icon>
             </template>
+            <!-- <v-list-item-title>Hola</v-list-item-title> -->
+            <v-switch
+              v-model="themeColor"
+              color="purple"
+              label="Enable messages"
+              hide-details
+            ></v-switch>
           </v-list-item>
         </v-list>
 
@@ -37,32 +35,10 @@
 
         <v-list>
           <v-list-item>
-            <v-switch
-              v-model="message"
-              color="purple"
-              label="Enable messages"
-              hide-details
-            ></v-switch>
-          </v-list-item>
-
-          <v-list-item>
-            <v-switch
-              v-model="hints"
-              color="purple"
-              label="Enable hints"
-              hide-details
-            ></v-switch>
+            <v-btn @click="logaout">
+              <v-icon icon="md:logout"></v-icon>  logout</v-btn>
           </v-list-item>
         </v-list>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-
-          <v-btn variant="text" @click="menu = false"> Cancel </v-btn>
-          <v-btn color="primary" variant="text" @click="menu = false">
-            Save
-          </v-btn>
-        </v-card-actions>
       </v-card>
     </v-menu>
   </v-app-bar>
@@ -89,45 +65,47 @@
   </v-navigation-drawer>
 </template>
 
-<script>
+<script setup>
 import { reactive, ref, onMounted } from "vue";
 import { useCommonStore } from "@/stores/common";
+import { useTheme } from "vuetify";
+import { usethemeStore } from "@/stores/theme";
+
+const themeStore = usethemeStore();
 const commonStore = useCommonStore();
+const theme = useTheme();
 
+const items = ref([]);
+const drawer = ref(false);
+const group = ref(null);
 
-export default {
-  setup() {
-    const items = ref([]);
-    const drawer = ref(false);
-    const group = ref(null);
+const fav = ref(true);
+const menu = ref(false);
+const hints = ref(true);
+const themeColor = ref(false);
+const message = ref(false);
 
-    const fav = ref(true);
-    const menu = ref(false);
-    const message = ref(false);
-    const hints = ref(true);
+watch(
+  () => commonStore.pages_gt,
+  (newValue, oldValue) => {
+    items.value = [...commonStore.pages_gt];
+  }
+);
 
-    watch(
-      () => commonStore.pages_gt,
-      (newValue, oldValue) => {
-        items.value = [...commonStore.pages_gt];
-      }
-    );
+watch(group, (newValue, oldValue) => {
+  drawer.value = false;
+});
+watch(themeColor, (newValue, oldValue) => {
+  if (newValue) {
+    theme.global.name.value = "dark";
+  } else {
+    theme.global.name.value = themeStore.theme.themeName;
+  }
+});
 
-    watch(group, (newValue, oldValue) => {
-      drawer.value = false;
-    });
-    onMounted(() => {});
-    return {
-      items,
-      drawer,
-      group,
-
-      fav,
-      menu,
-      message,
-      hints,
-    };
-  },
+const logaout = () => {
+  localStorage.removeItem('authToken');
+  location.reload();
 };
 </script>
 

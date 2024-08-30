@@ -3,7 +3,10 @@
   <v-container :fluid="true" class="mt-5 mb-5">
     <v-row class="headerPage__header">
       <v-col>
-        <h1 :style="st_headerPages_h1">
+        <!-- <h1 :style="st_headerPages_h1">
+          {{ title }}
+        </h1> -->
+         <h1>
           {{ title }}
         </h1>
         <p>
@@ -42,21 +45,21 @@ const props = defineProps({
   margin: 3em;
   h1 {
     margin-bottom: 0.8em;
-    color: #484848;
+    color: rgba(var(--v-theme-title), 1);
     font-size: 4em;
-    font-weight: 300;
+    font-weight: var(--v-titleFontWeight);
     line-height: 1.2;
     white-space: pre-wrap;
   }
   p {
-    color: #484848;
+    color: rgba(var(--v-theme-text), 1);
     font-weight: 100;
-    font-size: 1.2em;
+    font-size: var(--v-textSize);
   }
   .iconoHeader {
-    font-size: 20em;
+    font-size: var(--v-iconHeaderSize);
     text-align: center;
-    color: rgb(161, 159, 157);
+    color: rgba(var(--v-theme-iconHeader), 1);
   }
 }
 </style>

@@ -237,15 +237,19 @@
   ],
   "theme": {
     "id": 1,
-    "name": "Tema 1",
-    "primary": "#1976D2",
-    "secondary": "#424242",
-    "accent": "#82B1FF",
-    "error": "#FF5252",
-    "info": "#2196F3",
-    "success": "#4CAF50",
-    "warning": "#FFC107",
+    "themeName": "appTheme",
     "logo": "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png",
+    "common": {
+      "background": "#F5F5F5",
+      "navBar": "#465F7D",
+      "sidebar": "#ADBACA",
+      "footer": "#D9E9FD",
+      "title": "#465F7D",
+      "titleFontWeight": "300",
+      "iconHeaderSize": "20em",
+      "text": "#6B737D",
+      "iconHeader": "#8CC0FF"
+    },
     "st_p": {
       "color": "black",
       "size": "bold",
@@ -285,6 +289,27 @@
       "color": "black",
       "size": "bold",
       "style": "italic"
+    },
+    "autocomple": {
+      "variant": "underlined",
+      "color": "red",
+      "bgColor": "",
+      "baseColor": "#00ffff",
+      "clearable": true,
+      "chips": false
+    },
+    "textField": {
+      "variant": "outlined",
+      "color": "red",
+      "bgColor": "",
+      "baseColor": "#00ffff",
+      "clearable": false
+    },
+    "buttonField": {
+      "variant": "tonal",
+      "size": "large",
+      "rounded": "0",
+      "color": "#00ffff"
     }
   },
   "login": {
@@ -297,39 +322,39 @@
       "routes": [
         {
           "state": true,
-          "icon": "mdi-clock",
+          "icon": "md:shopping_cart",
           "url": "BillingView",
           "name": "Facturación"
         },
         {
           "state": true,
-          "icon": "mdi-clock",
+          "icon": "md:group",
           "url": "CustomerView",
           "name": "Clientes"
         },
         {
           "state": true,
-          "icon": "mdi-clock",
+          "icon": "md:inventory",
           "url": "InventaryView",
           "name": "Inventario"
         },
         {
           "state": true,
-          "icon": "mdi-clock",
-          "url": "ReportsView",
-          "name": "Informes"
-        },
-        {
-          "state": true,
-          "icon": "mdi-clock",
+          "icon": "md:design_services",
           "url": "ServicesView",
           "name": "Servicios"
         },
         {
           "state": true,
-          "icon": "mdi-clock",
+          "icon": "md:groups",
           "url": "UserView",
           "name": "Usuario"
+        },
+        {
+          "state": true,
+          "icon": "md:tune",
+          "url": "ThemeView",
+          "name": "Theme"
         }
       ]
     },
@@ -346,24 +371,27 @@
       ]
     }
   ],
-  "pages":[
+  "pages": [
     {
       "state": true,
-      "icon": "mdi-clock",
+      "icon": "md:login",
       "url": "Login",
-      "name": "Login"
+      "name": "Login",
+      "id": "927d"
     },
     {
       "state": true,
-      "icon": "mdi-clock",
+      "icon": "md:library_books",
       "url": "Agenda",
-      "name": "Agenda"
+      "name": "Agenda",
+      "id": "253f"
     },
     {
       "state": true,
-      "icon": "mdi-clock",
+      "icon": "md:factory",
       "url": "Home",
-      "name": "Inicio"
+      "name": "Inicio",
+      "id": "2aa8"
     }
   ]
 }

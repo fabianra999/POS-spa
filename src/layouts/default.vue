@@ -14,8 +14,10 @@
 <script setup>
 import { onMounted } from "vue";
 import { useCommonStore } from "@/stores/common";
+import { usethemeStore } from "@/stores/theme";
 
 const commonStore = useCommonStore();
+const themeStore = usethemeStore();
 
 const promises = [
   commonStore.GET_Dictionarys({ name: "country" }),
@@ -31,6 +33,7 @@ const promises = [
   commonStore.GET_Dictionarys({ name: "login" }),
   commonStore.GET_Dictionarys({ name: "pages" }),
   commonStore.GET_USERS({ page: 1, perPage: 100 }),
+  themeStore.GET_THEM(),
 ];
 
 Promise.all(promises).then(() => {

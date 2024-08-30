@@ -6,12 +6,15 @@
           <v-autocomplete
             v-model="bill.customer"
             :items="people"
-            color="blue-grey-lighten-2"
             item-title="name"
             item-value="id"
             :label="$t('customer')"
-            clearable
-            chips
+            :clearable="themeVue.current.variables.autocomple.clearable"
+            :variant="themeVue.current.variables.autocomple.variant"
+            :chips="themeVue.current.variables.autocomple.chips"
+            :base-color="themeVue.current.variables.autocomple.baseColor"
+            :color="themeVue.current.variables.autocomple.color"
+            :bg-color="themeVue.current.variables.autocomple.bgColor"
           >
             <template v-slot:chip="{ props, item }">
               <v-chip
@@ -33,9 +36,10 @@
         </v-col>
         <v-col>
           <v-btn
-            :variant="st_button.variant"
-            :color="st_button.color"
-            :size="st_button.size"
+            :variant="themeVue.current.variables.buttonField.variant"
+            :size="themeVue.current.variables.buttonField.size"
+            :rounded="themeVue.current.variables.buttonField.rounded"
+            :color="themeVue.current.variables.buttonField.color"
           >
             {{ $t("btn-create") }}
           </v-btn>
@@ -51,8 +55,12 @@
             item-title="name"
             item-value="id"
             :label="$t('category')"
-            :variant="st_input.variant"
-            clearable
+            :clearable="themeVue.current.variables.autocomple.clearable"
+            :variant="themeVue.current.variables.autocomple.variant"
+            :chips="themeVue.current.variables.autocomple.chips"
+            :base-color="themeVue.current.variables.autocomple.baseColor"
+            :color="themeVue.current.variables.autocomple.color"
+            :bg-color="themeVue.current.variables.autocomple.bgColor"
             :error-messages="bill.services[index].category_ms"
             @update:modelValue="
               setCategory_fn(item);
@@ -71,8 +79,12 @@
             item-title="name"
             item-value="id"
             :label="$t('service')"
-            :variant="st_input.variant"
-            clearable
+            :clearable="themeVue.current.variables.autocomple.clearable"
+            :variant="themeVue.current.variables.autocomple.variant"
+            :chips="themeVue.current.variables.autocomple.chips"
+            :base-color="themeVue.current.variables.autocomple.baseColor"
+            :color="themeVue.current.variables.autocomple.color"
+            :bg-color="themeVue.current.variables.autocomple.bgColor"
             :error-messages="bill.services[index].service_ms"
             @update:modelValue="
               bill.services[index].suggestedValue = findByKey(
@@ -92,8 +104,12 @@
             item-title="name"
             item-value="id"
             :label="$t('collaborator')"
-            :variant="st_input.variant"
-            clearable
+            :clearable="themeVue.current.variables.autocomple.clearable"
+            :variant="themeVue.current.variables.autocomple.variant"
+            :chips="themeVue.current.variables.autocomple.chips"
+            :base-color="themeVue.current.variables.autocomple.baseColor"
+            :color="themeVue.current.variables.autocomple.color"
+            :bg-color="themeVue.current.variables.autocomple.bgColor"
             :error-messages="bill.services[index].collaborator_ms"
             @update:modelValue="fieldValidation('collaborator')"
           ></v-autocomplete>
@@ -105,16 +121,21 @@
               :label="$t('suggestedValue')"
               :counter="10"
               required
-              :variant="st_input.variant"
+              :variant="themeVue.current.variables.textField.variant"
+              :color="themeVue.current.variables.textField.color"
+              :bg-color="themeVue.current.variables.textField.bgColor"
+              :base-color="themeVue.current.variables.textField.baseColor"
+              :clearable="themeVue.current.variables.textField.clearable"
               class="flex-grow-1"
               style="flex-basis: 80%"
               :error-messages="bill.services[index].suggestedValue_ms"
               @update:modelValue="fieldValidation('suggestedValue')"
             ></v-text-field>
             <v-btn
-              color="error"
-              size="small"
-              icon="mdi-delete"
+              :variant="themeVue.current.variables.buttonField.variant"
+              :size="themeVue.current.variables.buttonField.size"
+              :rounded="themeVue.current.variables.buttonField.rounded"
+              :color="themeVue.current.variables.buttonField.color"
               class="ml-2 mt-2"
               @click="billDelete_fn(index)"
               v-if="bill.services.length > 1"
@@ -125,9 +146,10 @@
       <v-row>
         <v-col>
           <v-btn
-            :variant="st_button.variant"
-            :color="st_button.color"
-            :size="st_button.size"
+            :variant="themeVue.current.variables.buttonField.variant"
+            :size="themeVue.current.variables.buttonField.size"
+            :rounded="themeVue.current.variables.buttonField.rounded"
+            :color="themeVue.current.variables.buttonField.color"
             @click="billAdd_fn"
           >
             {{ $t("btn-newService") }}
@@ -143,7 +165,11 @@
           :label="$t('total')"
           :counter="10"
           required
-          :variant="st_input.variant"
+          :variant="themeVue.current.variables.textField.variant"
+          :color="themeVue.current.variables.textField.color"
+          :bg-color="themeVue.current.variables.textField.bgColor"
+          :base-color="themeVue.current.variables.textField.baseColor"
+          :clearable="themeVue.current.variables.textField.clearable"
         ></v-text-field>
       </v-col>
       <v-col>
@@ -152,7 +178,11 @@
           :label="$t('money')"
           :counter="10"
           required
-          :variant="st_input.variant"
+          :variant="themeVue.current.variables.textField.variant"
+          :color="themeVue.current.variables.textField.color"
+          :bg-color="themeVue.current.variables.textField.bgColor"
+          :base-color="themeVue.current.variables.textField.baseColor"
+          :clearable="themeVue.current.variables.textField.clearable"
           @update:modelValue="billTotelChange_fn"
         ></v-text-field>
       </v-col>
@@ -162,7 +192,11 @@
           :label="$t('change')"
           :counter="10"
           required
-          :variant="st_input.variant"
+          :variant="themeVue.current.variables.textField.variant"
+          :color="themeVue.current.variables.textField.color"
+          :bg-color="themeVue.current.variables.textField.bgColor"
+          :base-color="themeVue.current.variables.textField.baseColor"
+          :clearable="themeVue.current.variables.textField.clearable"
         ></v-text-field>
       </v-col>
     </v-row>
@@ -174,8 +208,12 @@
           item-title="name"
           item-value="id"
           :label="$t('typePayment')"
-          :variant="st_input.variant"
-          clearable
+          :clearable="themeVue.current.variables.autocomple.clearable"
+          :variant="themeVue.current.variables.autocomple.variant"
+          :chips="themeVue.current.variables.autocomple.chips"
+          :base-color="themeVue.current.variables.autocomple.baseColor"
+          :bg-color="themeVue.current.variables.autocomple.bgColor"
+          :color="themeVue.current.variables.autocomple.color"
           :error-messages="error_typePayment"
           @update:modelValue="
             bill.typePayment != null
@@ -186,23 +224,25 @@
       </v-col>
       <v-col>
         <v-btn
-          :variant="st_button.variant"
-          :color="st_button.color"
-          :size="st_button.size"
+          :variant="themeVue.current.variables.buttonField.variant"
+          :size="themeVue.current.variables.buttonField.size"
+          :rounded="themeVue.current.variables.buttonField.rounded"
+          :color="themeVue.current.variables.buttonField.color"
+          buttonField
           @click="billSave_fn"
         >
-          <!-- :disabled="billTotal === 0" -->
-          {{ $t("btn-bill") }}
-        </v-btn>
+        <!-- :disabled="billTotal === 0" -->
+        {{ $t("btn-bill") }}
+      </v-btn>
       </v-col>
     </v-row>
   </v-container>
 </template>
 <route lang="yaml">
-  meta:
-    layout: default
-    requiresAuth: true
-  </route>
+meta:
+  layout: default
+  requiresAuth: true
+</route>
 <script setup>
 import { ref, reactive, watch } from "vue";
 import { storeToRefs } from "pinia";
@@ -212,7 +252,9 @@ import { useCommonStore } from "@/stores/common";
 import { useBillingStore } from "@/stores/billing";
 import { useInventoryStore } from "@/stores/inventory";
 import { findByKey, filterByKey } from "@/utils/utils";
+import { useTheme } from "vuetify";
 
+const themeVt = useTheme();
 const themeStore = usethemeStore();
 const customerStore = useCustomerStore();
 const commonStore = useCommonStore();
@@ -224,6 +266,18 @@ const inventoryList = reactive([]);
 const billTotal = ref(0);
 const billMoney = ref(0);
 const billChange = ref(0);
+
+
+const { themeVue } = storeToRefs(themeStore);
+
+
+const textField = reactive({
+  ...themeVt.global.current.value.variables.textField,
+});
+const buttonField = reactive({
+  ...themeVt.global.current.value.variables.buttonField,
+});
+
 let bill = reactive({
   customer: null,
   total: billTotal,
@@ -411,5 +465,4 @@ watch(
 onMounted(() => {});
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
