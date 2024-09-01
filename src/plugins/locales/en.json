@@ -63,5 +63,6 @@
   "service": "Service",
   "collaborator": "Collaborator",
   "suggestedValue": "Suggested value",
-  "btn-newService": "New service"
+  "btn-newService": "New service",
+  "invoices": "Invoices"
 }

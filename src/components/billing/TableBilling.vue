@@ -3,39 +3,27 @@
     :items-length="totalItems"
     v-model:items-per-page="itemsPerPage"
     :headers="headers"
-    :items="desserts"
+    :items="dessertsUsers"
     :sort-by="[{ key: 'id', order: 'asc' }]"
     v-model:expanded="expanded"
     item-value="name"
     show-expand
     @update:options="initialize"
   >
-    <template v-slot:item.seller="{ item }">
-      {{ $filters.findByKey(listUsers, "id", item.seller) }}
-    </template>
-     <template v-slot:item.paymentMethod="{ item }">
-      {{ $filters.findByKey(listPaymentMethods, "id", item.paymentMethod) }}
+    <template v-slot:item.typePayment="{ item }">
+      {{ $filters.findByKey(listPaymentMethods, "id", item.typePayment) }}
     </template>
     <template v-slot:item.state="{ item }">
       {{ item.state === true ? "Activo" : "Inactivo" }}
     </template>
+    <template v-slot:item.total="{ item }"> $ {{ item.total }} </template>
 
     <template v-slot:top>
       <v-toolbar flat>
-        <v-toolbar-title>{{ $t("invoice") }}</v-toolbar-title>
+        <v-toolbar-title>{{ $t("invoices") }}</v-toolbar-title>
         <v-divider class="mx-4" inset vertical></v-divider>
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="80vw">
-          <!-- <template v-slot:activator="{ props }">
-            <v-btn
-              prepend-icon="$vuetify"
-              v-bind="props"
-              :color="st_button.color"
-              :variant="st_button.variant"
-            >
-              {{ $t("inventaryNew") }}
-            </v-btn>
-          </template> -->
           <v-card class="formUser">
             <v-card-title>
               <span class="text-h3">{{ formTitle }}</span>
@@ -53,7 +41,11 @@
                         :error-messages="
                           getErrorMessage(v$.editedItem.name.$errors)
                         "
-                        :variant="st_input.variant"
+                        :variant="textField.variant"
+                        :color="textField.color"
+                        :bg-color="textField.bgColor"
+                        :base-color="textField.baseColor"
+                        :clearable="textField.clearable"
                         @blur="v$.editedItem.name.$touch"
                         @input="v$.editedItem.name.$touch"
                       ></v-text-field>
@@ -67,7 +59,11 @@
                         :error-messages="
                           getErrorMessage(v$.editedItem.price.$errors)
                         "
-                        :variant="st_input.variant"
+                        :variant="textField.variant"
+                        :color="textField.color"
+                        :bg-color="textField.bgColor"
+                        :base-color="textField.baseColor"
+                        :clearable="textField.clearable"
                         @blur="v$.editedItem.price.$touch"
                         @input="v$.editedItem.price.$touch"
                       ></v-text-field>
@@ -80,7 +76,11 @@
                         :error-messages="
                           getErrorMessage(v$.editedItem.quantity.$errors)
                         "
-                        :variant="st_input.variant"
+                        :variant="textField.variant"
+                        :color="textField.color"
+                        :bg-color="textField.bgColor"
+                        :base-color="textField.baseColor"
+                        :clearable="textField.clearable"
                         @blur="v$.editedItem.quantity.$touch"
                         @input="v$.editedItem.quantity.$touch"
                       ></v-text-field>
@@ -94,10 +94,15 @@
                         item-title="name"
                         item-value="id"
                         required
+                        :clearable="autocomplete.clearable"
+                        :variant="autocomplete.variant"
+                        :chips="autocomplete.chips"
+                        :base-color="autocomplete.baseColor"
+                        :bg-color="autocomplete.bgColor"
+                        :color="autocomplete.color"
                         :error-messages="
                           getErrorMessage(v$.editedItem.inventaryType.$errors)
                         "
-                        :variant="st_input.variant"
                         @blur="v$.editedItem.inventaryType.$touch"
                         @input="v$.editedItem.inventaryType.$touch"
                       ></v-autocomplete>
@@ -110,7 +115,11 @@
                         :error-messages="
                           getErrorMessage(v$.editedItem.location.$errors)
                         "
-                        :variant="st_input.variant"
+                        :variant="textField.variant"
+                        :color="textField.color"
+                        :bg-color="textField.bgColor"
+                        :base-color="textField.baseColor"
+                        :clearable="textField.clearable"
                         @blur="v$.editedItem.location.$touch"
                         @input="v$.editedItem.location.$touch"
                       ></v-text-field>
@@ -123,7 +132,6 @@
                         :error-messages="
                           getErrorMessage(v$.editedItem.state.$errors)
                         "
-                        :variant="st_input.variant"
                         @blur="v$.editedItem.state.$touch"
                         @input="v$.editedItem.state.$touch"
                       ></v-checkbox>
@@ -136,18 +144,20 @@
               <v-spacer></v-spacer>
 
               <v-btn
-                :variant="st_button.variant"
-                :color="st_button.color"
-                :size="st_button.size"
+                :variant="buttonField.variant"
+                :size="buttonField.size"
+                :rounded="buttonField.rounded"
+                :color="buttonField.color"
                 @click="close"
               >
                 {{ $t("btn-cancel") }}
               </v-btn>
 
               <v-btn
-                :variant="st_button.variant"
-                :color="st_button.color"
-                :size="st_button.size"
+                :variant="buttonField.variant"
+                :size="buttonField.size"
+                :rounded="buttonField.rounded"
+                :color="buttonField.color"
                 @click="save"
               >
                 {{ $t("btn-save") }}
@@ -166,17 +176,19 @@
             <v-card-actions class="">
               <v-spacer></v-spacer>
               <v-btn
-                :variant="st_button.variant"
-                :color="st_button.color"
-                :size="st_button.size"
+                :variant="buttonField.variant"
+                :size="buttonField.size"
+                :rounded="buttonField.rounded"
+                :color="buttonField.color"
                 @click="closeDelete"
               >
                 {{ $t("btn-cancel") }}
               </v-btn>
               <v-btn
-                :variant="st_button.variant"
-                :color="st_button.color"
-                :size="st_button.size"
+                :variant="buttonField.variant"
+                :size="buttonField.size"
+                :rounded="buttonField.rounded"
+                :color="buttonField.color"
                 @click="deleteItemConfirm"
               >
                 {{ $t("btn-save") }}
@@ -202,25 +214,36 @@
     <template v-slot:expanded-row="{ columns, item }">
       <tr>
         <td :colspan="columns.length">
-          <h2 class="mt-6">
-            {{ $t("infoUser") }} - {{ item.name }} {{ item.lastName }}
-          </h2>
-          <v-container :fluid="true">
+          <h2 class="mt-6">Información de la factura - {{ item.id }}</h2>
+          <v-container class="containerServices" :fluid="true">
             <v-row>
-              <v-col v-for="(date, key) in item" :key="key" cols="12" md="3">
-                <v-card
-                  class="mx-auto my-2"
-                  elevation="5"
-                  variant="plain"
-                  color="tonal"
+              <v-col cols="12" md="12">
+                <v-data-table-virtual
+                  :headers="headersServices"
+                  :items="item.services"
+                  height="400"
+                  item-value="id"
                 >
-                  <v-card-item>
-                    <v-card-title> {{ $t(key) }} </v-card-title>
-                    <v-card-subtitle>
-                      {{ date }}
-                    </v-card-subtitle>
-                  </v-card-item>
-                </v-card>
+                  <template v-slot:item.collaborator="{ item }">
+                    {{
+                      $filters.findByKey(listUsersList, "id", item.collaborator)
+                    }}
+                  </template>
+
+                  <template v-slot:item.category="{ item }">
+                    {{
+                      $filters.findByKey(listCategoriest, "id", item.category)
+                    }}
+                  </template>
+
+                  <template v-slot:item.service="{ item }">
+                    {{ $filters.findByKey(listServices, "id", item.service) }}
+                  </template>
+
+                  <template v-slot:item.suggestedValue="{ item }">
+                    $ {{ item.suggestedValue }}
+                  </template>
+                </v-data-table-virtual>
               </v-col>
             </v-row>
           </v-container>
@@ -237,11 +260,11 @@ import { useVuelidate } from "@vuelidate/core";
 import { email, required } from "@vuelidate/validators";
 
 import { useCommonStore } from "@/stores/common";
+import { useInventoryStore } from "@/stores/inventory";
 import { useBillingStore } from "@/stores/billing";
-import { usethemeStore } from "@/stores/theme";
+import { useTheme } from "vuetify";
 
-const themeStore = usethemeStore();
-
+const inventoryStore = useInventoryStore();
 const billingStore = useBillingStore();
 const commonStore = useCommonStore();
 
@@ -252,18 +275,23 @@ export default {
       useScope: "global",
     });
 
+    const listInventaryType = commonStore.inventaryType;
     const listPaymentMethods = commonStore.paymentMethods;
-    const listUsers = commonStore.usersList;
+    const listUsersList = commonStore.usersList;
+    const listCategoriest = commonStore.categories;
+    const listServices = commonStore.services;
 
-    const { st_button, st_input } = storeToRefs(themeStore);
+    const theme = useTheme();
 
     return {
       v$: useVuelidate(),
       t,
+      listInventaryType,
       listPaymentMethods,
-      listUsers,
-      st_button,
-      st_input,
+      listUsersList,
+      listCategoriest,
+      listServices,
+      theme,
     };
   },
   data: () => ({
@@ -274,48 +302,63 @@ export default {
     dialog: false,
     dialogDelete: false,
     headers: [
-      { title: "Id", key: "id", align: "start", sortable: false },
       {
-        title: "Calaborador",
-        key: "seller",
+        title: "Id",
+        align: "start",
+        sortable: false,
+        key: "id",
       },
-      { title: "Cliente", key: "customer" },
-      { title: "Metodo de pago", key: "paymentMethod" },
-      { title: "Total", key: "total" },
-      { title: "Estado", key: "state" },
+      { title: "typePayment", key: "typePayment" },
+      { title: "total", key: "total" },
+      { title: "date", key: "date" },
+      { title: "state", key: "state" },
       { title: "Actions", key: "actions", sortable: false },
     ],
-    desserts: [],
+    headersServices: [
+      {
+        title: "Id",
+        align: "start",
+        sortable: false,
+        key: "id",
+      },
+      { title: "collaborator", key: "collaborator" },
+      { title: "category", key: "category" },
+      { title: "service", key: "service" },
+      { title: "suggestedValue", key: "suggestedValue" },
+    ],
+    dessertsUsers: [],
     editedIndex: -1,
     defaultItem: {
       customer: null,
-      seller: null,
-      cashier: null,
-      paymentMethod: null,
       total: null,
-      date: new Date(),
-      state: true,
+      typePayment: "",
+      cashier: "",
+      date: "",
+      state: false,
+      services: [],
     },
-    3: {
+    editedItem: {
       customer: null,
-      seller: null,
-      cashier: null,
-      paymentMethod: null,
       total: null,
-      date: new Date(),
-      state: true,
+      typePayment: "",
+      cashier: "",
+      date: "",
+      state: false,
+      services: [],
     },
+    autocomplete: {},
+    textField: {},
+    buttonField: {},
   }),
 
   validations() {
     return {
       editedItem: {
-        customer: {},
-        seller: { required },
-        cashier: { required },
-        paymentMethod: { required },
-        total: { required },
-        date: { required },
+        name: { required },
+        price: { required },
+        quantity: { required },
+        inventaryType: { required },
+        location: { required },
         state: { required },
       },
     };
@@ -323,8 +366,8 @@ export default {
   computed: {
     formTitle() {
       return this.editedIndex === -1
-        ? this.t("newInvoice")
-        : this.t("editInvoice");
+        ? this.t("newInventary")
+        : this.t("editInventary");
     },
   },
 
@@ -339,18 +382,21 @@ export default {
 
   created() {
     // this.initialize();
+    this.autocomplete = this.theme.global.current.value.variables.autocomple;
+    this.textField = this.theme.global.current.value.variables.textField;
+    this.buttonField = this.theme.global.current.value.variables.buttonField;
   },
 
   methods: {
     initialize({ page, itemsPerPage, sortBy }) {
       billingStore.GET_BILLS({ page: page, perPage: itemsPerPage }).then(() => {
-        this.desserts = billingStore.invoice.data;
+        this.dessertsUsers = billingStore.invoice.data;
         this.totalItems = billingStore.invoice.items;
       });
     },
 
     editItem(item) {
-      this.editedIndex = this.desserts.findIndex(
+      this.editedIndex = this.dessertsUsers.findIndex(
         (user) => user.id === { ...item }.id
       );
       this.editedItem = Object.assign({}, item);
@@ -358,13 +404,13 @@ export default {
     },
 
     deleteItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
+      this.editedIndex = this.dessertsUsers.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialogDelete = true;
     },
 
     deleteItemConfirm() {
-      billingStore.DELETE_BILL(this.editedItem.id).then(() => {
+      products.DELETE_INVENTORY(this.editedItem.id).then(() => {
         this.initialize({ page: 1, itemsPerPage: 10 });
       });
       this.closeDelete();
@@ -394,8 +440,8 @@ export default {
       }
 
       if (this.editedIndex > -1) {
-        billingStore
-          .UPDATE_BILL({
+        inventoryStore
+          .UPDATE_INVENTORY({
             id: this.editedItem.id,
             data: this.editedItem,
           })
@@ -403,7 +449,7 @@ export default {
             this.initialize({ page: 1, itemsPerPage: 10 });
           });
       } else {
-        billingStore.CREATE_BILL(this.editedItem).then(() => {
+        inventoryStore.CREATE_INVENTARY(this.editedItem).then(() => {
           this.initialize({ page: 1, itemsPerPage: 10 });
         });
       }
@@ -451,5 +497,9 @@ export default {
   .v-card-item {
     background-color: gainsboro;
   }
+}
+
+.containerServices {
+  background-color: #d7d7d7;
 }
 </style>

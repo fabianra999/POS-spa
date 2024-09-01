@@ -62,5 +62,6 @@
   "service": "Servicio",
   "collaborator": "Colaborador",
   "suggestedValue": "valor sugerido",
-  "btn-newService": "Nuevo servicio"
+  "btn-newService": "Nuevo servicio",
+  "invoices": "Facturas"
 }
