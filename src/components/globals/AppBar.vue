@@ -6,7 +6,9 @@
       @click.stop="drawer = !drawer"
     ></v-app-bar-nav-icon>
 
-    <v-toolbar-title>My files</v-toolbar-title>
+    <v-toolbar-title>
+      <img class="logo" :src="themeStore.theme.logo" alt="Imagen subida" />
+    </v-toolbar-title>
     <v-spacer></v-spacer>
 
     <template v-if="$vuetify.display.mdAndUp"> </template>
@@ -36,7 +38,8 @@
         <v-list>
           <v-list-item>
             <v-btn @click="logaout">
-              <v-icon icon="md:logout"></v-icon>  logout</v-btn>
+              <v-icon icon="md:logout"></v-icon> logout</v-btn
+            >
           </v-list-item>
         </v-list>
       </v-card>
@@ -104,9 +107,16 @@ watch(themeColor, (newValue, oldValue) => {
 });
 
 const logaout = () => {
-  localStorage.removeItem('authToken');
+  localStorage.removeItem("authToken");
   location.reload();
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.logo{
+  width: 100%;
+    height: auto;
+    margin-right: 10px;
+    max-width: 110px;
+}
+</style>

@@ -141,5 +141,8 @@ export const usethemeStore = defineStore("theme", {
       this.theme = payload;
       this.PUT_THEME();
     },
+    SET_THEME_INPUT(id, payload) {
+      this.theme[id] = payload;
+    },
   },
 });

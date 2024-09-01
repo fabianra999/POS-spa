@@ -31,13 +31,45 @@
               ></v-autocomplete>
             </v-col>
           </v-row>
+          <v-divider class="mt-5 mb-5"></v-divider>
           <v-row>
             <v-col>
+              <h3>Logotipo</h3>
               <p>
-                Puedes activar el tema oscuro o volver a tu selección anterior:
+                Para cambiar el logotipo por favor selecciona una imagen
+                preferiblemente con formato .png.
               </p>
-              <br />
-              <v-btn @click="toggleTheme">toggle theme</v-btn>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <v-file-input
+                v-model="logo"
+                accept="image/png, image/jpeg, image/bmp"
+                label="Entrada de imagen"
+                placeholder="Sube tu imagen"
+                prepend-icon="mdi-paperclip"
+                show-size
+                @change="onFileChange"
+              ></v-file-input>
+              <v-card
+                class="mx-auto mt-5 cardLogo"
+                subtitle="Vista previa"
+                width="400"
+                v-if="base64Image"
+              >
+                <template v-slot:title>
+                  <span class="font-weight-black">Logotipo </span>
+                </template>
+
+                <v-card-text class="bg-surface-light pt-4">
+                  <img
+                    class="logoBase64"
+                    :src="base64Image"
+                    alt="Imagen subida"
+                  />
+                </v-card-text>
+              </v-card>
             </v-col>
           </v-row>
           <v-divider class="mt-5 mb-5"></v-divider>
@@ -742,6 +774,7 @@ const themeOptions = [
   "customLightTheme",
 ];
 const tab = ref(null);
+const base64Image = ref(null);
 
 const backgroundName = computed({
   get() {
@@ -764,11 +797,35 @@ const setComponent = (typePayload, payload) => {
   themeStore.SET_COMPONENT(typePayload, payload);
 };
 
+const onFileChange = (event) => {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const base64String = e.target.result;
+    console.log(base64String);
+
+    base64Image.value = base64String;
+    themeStore.SET_THEME_INPUT("logo", base64String);
+  };
+  reader.readAsDataURL(file);
+};
+
 onMounted(() => {});
 </script>
 
 <style lang="scss" scoped>
 .containerComponents {
   margin-top: 4em;
+}
+.cardLogo {
+  text-align: center;
+  .logoBase64 {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
 }
 </style>
