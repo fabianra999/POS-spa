@@ -46,6 +46,7 @@
         </v-col>
       </v-row>
     </v-form>
+    <v-divider class="mt-5 mb-5"></v-divider>
     <div class="services__section">
       <v-row v-for="(item, index) in bill.services" :key="item.id">
         <v-col>
@@ -136,7 +137,8 @@
               :size="themeVue.current.variables.buttonField.size"
               :rounded="themeVue.current.variables.buttonField.rounded"
               :color="themeVue.current.variables.buttonField.color"
-              class="ml-2 mt-2"
+              class="ml-2"
+              icon="mdi-delete"
               @click="billDelete_fn(index)"
               v-if="bill.services.length > 1"
             ></v-btn>
@@ -157,7 +159,7 @@
         </v-col>
       </v-row>
     </div>
-
+    <v-divider class="mt-5 mb-5"></v-divider>
     <v-row class="calculations__section">
       <v-col>
         <v-text-field
@@ -231,9 +233,9 @@
           buttonField
           @click="billSave_fn"
         >
-        <!-- :disabled="billTotal === 0" -->
-        {{ $t("btn-bill") }}
-      </v-btn>
+          <!-- :disabled="billTotal === 0" -->
+          {{ $t("btn-bill") }}
+        </v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -267,9 +269,7 @@ const billTotal = ref(0);
 const billMoney = ref(0);
 const billChange = ref(0);
 
-
 const { themeVue } = storeToRefs(themeStore);
-
 
 const textField = reactive({
   ...themeVt.global.current.value.variables.textField,
@@ -371,16 +371,13 @@ const billSave_fn = () => {
   isUpdating.value = true;
   fieldsValidation();
   validateBill();
-  // Actualizar Varible reactiva
-  Object.assign(bill, billSet);
-
-  console.log("test");
 
   const dataFilter = removeMsKeys(bill);
   dataFilter.date = new Date();
   if (bill.state) {
     billingStore.CREATE_BILL(dataFilter).then(() => {
       isUpdating.value = false;
+      Object.assign(bill, billSet);
     });
   } else {
     console.log("Validación incorrecta");
@@ -427,7 +424,6 @@ const validateBill = (data) => {
     servicesData = false;
     return false;
   });
-
   if (bill.typePayment != null && servicesData) {
     bill.state = true;
   } else {
