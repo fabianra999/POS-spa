@@ -231,6 +231,24 @@
                         @input="v$.editedItemUser.city.$touch"
                       ></v-autocomplete>
                     </v-col>
+                    <v-col class="imgAvatarContainer" cols="12" sm="6" md="4">
+                      <div v-if="editedIndex === 1" class="imgAvatar">
+                        <img
+                          class="logo"
+                          :src="editedItemUser.img"
+                          alt="Imagen subida"
+                        />
+                      </div>
+                      <v-file-input
+                        v-model="editedItemUser.img"
+                        accept="image/png, image/jpeg, image/bmp"
+                        label="Entrada de imagen"
+                        placeholder="Sube tu imagen"
+                        prepend-icon="mdi-paperclip"
+                        show-size
+                        @change="onFileChange"
+                      ></v-file-input>
+                    </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-checkbox
                         v-model="editedItemUser.state"
@@ -423,6 +441,7 @@ export default {
       password: "",
       country: null,
       city: null,
+      img: null,
       state: false,
     },
     editedItemUser: {
@@ -437,6 +456,7 @@ export default {
       password: "",
       country: null,
       city: null,
+      img: null,
       state: false,
     },
     autocomplete: {},
@@ -559,6 +579,20 @@ export default {
       }
       return "";
     },
+
+    onFileChange(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const base64String = e.target.result;
+        console.log(base64String);
+
+        this.editedItemUser.img = base64String;
+      };
+      reader.readAsDataURL(file);
+    },
   },
 };
 </script>
@@ -592,6 +626,36 @@ export default {
 .v-overlay__content {
   .v-card-item {
     background-color: gainsboro;
+  }
+}
+
+.imgAvatarContainer{
+  display: flex;
+  align-items: center;
+}
+.imgAvatar {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  line-height: normal;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: width, height;
+  vertical-align: middle;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .v-input {
   }
 }
 </style>
