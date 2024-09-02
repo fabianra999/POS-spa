@@ -2,6 +2,7 @@
   <v-app>
     <v-layout>
       <AppBar />
+      <HeaderCom v-if="isAuthenticated"  />
       <v-main>
         <router-view />
       </v-main>
@@ -19,6 +20,8 @@ const commonStore = useCommonStore();
 commonStore.GET_Dictionarys({ name: "theme" });
 commonStore.GET_Dictionarys({ name: "pages" });
 
+const isAuthenticated = ref(false);
+
 const promises = [
   // commonStore.GET_Dictionarys({ name: "theme" }),
   // commonStore.GET_Dictionarys({ name: "pages" }),
@@ -32,7 +35,13 @@ Promise.all(promises).then(() => {
   //     commonStore.GET_Dictionarys({ name: "permissions", id: response.role });
   //   });
 });
-onMounted(() => {});
+onMounted(() => {
+  const authToken = localStorage.getItem('authToken');
+  console.log(authToken);
+  if (authToken) {
+    isAuthenticated.value = true;
+  }
+});
 </script>
 
 <style lang="scss" scoped></style>

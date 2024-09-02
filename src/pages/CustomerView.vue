@@ -1,5 +1,5 @@
 <template>
-    <HeaderPagesCom :title="$t('customerTitle')" :subTitle="$t('customerSubTitle')" />
+    <HeaderPagesCom :title="$t('customerTitle')" :subTitle="$t('customerSubTitle')" icon="md:group"/>
     <TableCustomer />
   </template>
   <route lang="yaml">

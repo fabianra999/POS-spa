@@ -2,6 +2,7 @@
   <HeaderPagesCom
     :title="$t('invoicesTitle')"
     :subTitle="$t('invoiceSubTitle')"
+      icon="md:query_stats"
   />
   <TableBilling />
 </template>

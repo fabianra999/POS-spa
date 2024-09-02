@@ -1,5 +1,5 @@
 <template>
-    <HeaderPagesCom :title="$t('inventoryTitle')" :subTitle="$t('inventorySubTitle')" />
+    <HeaderPagesCom :title="$t('inventoryTitle')" :subTitle="$t('inventorySubTitle')" icon="md:inventory" />
     <TableInventory />
   </template>
   <route lang="yaml">

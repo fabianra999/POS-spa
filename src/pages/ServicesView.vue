@@ -2,6 +2,7 @@
   <HeaderPagesCom
     :title="$t('servicesTitle')"
     :subTitle="$t('inventorySubTitle')"
+    icon="md:design_services"
   />
   <TableServices />
   <route lang="yaml"> meta: layout: default requiresAuth: true </route>

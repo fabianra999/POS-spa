@@ -1,5 +1,5 @@
 <template>
-  <HeaderPagesCom :title="$t('userTitle')" :subTitle="$t('userSubTitle')" />
+  <HeaderPagesCom :title="$t('userTitle')" :subTitle="$t('userSubTitle')" icon="md:tune"/>
   <v-tabs v-model="tab" align-tabs="center">
     <v-tab value="one">General</v-tab>
     <v-tab value="two">Componentes</v-tab>

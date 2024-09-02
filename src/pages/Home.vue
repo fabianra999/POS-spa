@@ -1,19 +1,24 @@
 <template>
-  <div class="login">
-    <h2>Login</h2>
-    <form @submit.prevent="handleLogin">
-      <div>
-        <label for="username">Username:</label>
-        <input type="text" v-model="username" id="username" required />
-      </div>
-      <div>
-        <label for="password">Password:</label>
-        <input type="password" v-model="password" id="password" required />
-      </div>
-      <button type="submit">Login</button>
-    </form>
-    <p v-if="error">{{ error }}</p>
-  </div>
+  <section class="home">
+    <div id="introduction">
+      <div class="slide"></div>
+    </div>
+
+    <!-- images -->
+    <div class="images">
+      <div class="img img-1"></div>
+      <div class="img img-2"></div>
+      <div class="img img-3"></div>
+      <div class="img img-4"></div>
+      <div class="img img-5"></div>
+    </div>
+
+    <!-- title -->
+    <div class="title">
+      <span>Nails Room</span>
+    </div>
+  </section>
+  <!-- <Loading  /> -->
 </template>
 <route lang="yaml">
 meta:
@@ -22,91 +27,158 @@ meta:
 </route>
 
 <script setup>
+import { gsap } from "gsap";
 import { ref } from "vue";
-import { useRouter } from "vue-router";
-import { useAuthentication } from "@/stores/userAuthentication";
 
+onMounted(() => {
+  gsap.from(".title span", {
+    duration: 3,
+    delay: 3,
+    opacity: 0,
+    x: -50,
+    ease: "elastic",
+    stagger: {
+      each: 0.2, // controls the stagger amount between each element
+      from: "start", // controls the direction of the stagger
+    },
+  });
 
-const authentication = useAuthentication();
+  gsap.from(".img", {
+    duration: 3,
+    delay: 0.7,
+    opacity: 0,
+    y: 70,
+    ease: "expo.inOut",
+    stagger: {
+      each: 0.2, // controls the stagger amount between each element
+      from: "center", // controls the direction of the stagger
+    },
+  });
 
-const username = ref("");
-const password = ref("");
-const error = ref("");
-const router = useRouter();
+  const tl = gsap.timeline({
+    defaults: {
+      duration: 1.0,
+      ease: "expo.inOut",
+    },
+  });
 
-const handleLogin = async () => {
-
-    authentication.POS_LOGIN();
-    router.push("/BillingView");
-//   try {
-//     // Aquí puedes hacer una llamada a tu API de autenticación
-//     const response = await fetch("https://api.example.com/login", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         username: username.value,
-//         password: password.value,
-//       }),
-//     });
-
-//     if (!response.ok) {
-//       throw new Error("Login failed");
-//     }
-
-//     const data = await response.json();
-//     // Guardar el token de autenticación en el almacenamiento local
-//     localStorage.setItem("authToken", data.token);
-//     // Redirigir al usuario a la página principal
-//     router.push("/");
-//   } catch (err) {
-//     error.value = "Login failed. Please check your credentials and try again.";
-//   }
-};
+  tl.to(".slide", { width: 0 }).to("#introduction", { height: 0 });
+});
 </script>
 
-<style scoped>
-.login {
-  max-width: 300px;
-  margin: auto;
-  padding: 1em;
-  border: 1px solid #ccc;
-  border-radius: 1em;
+<style lang="scss" scoped>
+.home {
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.1;
+    z-index: -1;
+    background: linear-gradient(
+      -45deg,
+      #dce6f2,
+      #0468bf,
+      #048abf,
+      #bfa288,
+      #bf7449
+    );
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    height: 100vh;
+  }
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
+.images {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  z-index: 1;
+  .img {
+    width: 140px;
+    height: 300px;
+    margin: 40px;
+    transition: filter 0.3s ease;
+
+    &:hover {
+      filter: brightness(0.8) contrast(1.2);
+    }
+  }
+  .img-1 {
+    transform: scale(1.1);
+    background: url(https://i.postimg.cc/hvmRV7Nm/img-5.jpg) 50% 50% no-repeat;
+    background-size: cover;
+  }
+
+  .img-2 {
+    transform: scale(1.4);
+    background: url(https://i.postimg.cc/Vs08x35N/img-4.jpg) 50% 50% no-repeat;
+    background-size: cover;
+  }
+
+  .img-3 {
+    transform: scale(1.1);
+    background: url(https://i.postimg.cc/VLy8mDbW/img-3.jpg) 50% 50% no-repeat;
+    background-size: cover;
+  }
+
+  .img-4 {
+    transform: scale(1.4);
+    background: url(https://i.postimg.cc/vBcsHKz3/img-2.jpg) 50% 50% no-repeat;
+    background-size: cover;
+  }
+
+  .img-5 {
+    transform: scale(1.1);
+    background: url(https://i.postimg.cc/YSX7771v/img-1.jpg) 50% 50% no-repeat;
+    background-size: cover;
+  }
 }
 
-.login div {
-  margin-bottom: 1em;
+.title span {
+  position: absolute;
+  font-size: 55px;
+  text-transform: uppercase;
+  color: rgb(59, 58, 57);
+  top: 80%;
+  left: 50%;
+  font-weight: bolder;
+  letter-spacing: 20px;
+  z-index: 2;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.login label {
-  margin-bottom: 0.5em;
-  color: #333333;
-  display: block;
-}
-
-.login input {
-  border: 1px solid #cccccc;
-  padding: 0.5em;
-  font-size: 1em;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.login button {
-  padding: 0.7em;
-  color: #fff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 0.3em;
+#introduction {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 105;
+  background-color: #262626;
   cursor: pointer;
-}
-
-.login button:hover {
-  background-color: #0056b3;
-}
-
-.login p {
-  color: red;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  .slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+  }
 }
 </style>

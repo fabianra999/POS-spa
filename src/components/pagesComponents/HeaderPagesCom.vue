@@ -14,7 +14,7 @@
         </p>
       </v-col>
       <v-col class="text-center">
-        <v-icon class="iconoHeader" icon="md:history" />
+        <v-icon class="iconoHeader" :icon="icon" />
       </v-col>
     </v-row>
   </v-container>
@@ -36,6 +36,10 @@ const props = defineProps({
   subTitle: {
     type: String,
     required: true,
+  },
+  icon: {
+    type: String,
+    default: 'md:history',
   },
 });
 </script>
